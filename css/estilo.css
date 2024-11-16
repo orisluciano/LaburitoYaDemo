@@ -4,8 +4,12 @@ body {
 }
 
 .bgAzul {
-    background-color: blue;
+    background-color: #3f51b59e;
     color: aliceblue;
+}
+
+.colorAzul {
+    color: #3f51b59e;
 }
 
 .margin0 {
@@ -22,4 +26,10 @@ body {
 
 .centrarContenido {
     justify-content: center;
+}
+
+.cabecera {
+    font-style: oblique;
+    font-family: system-ui;
+    letter-spacing: 1px;
 }
