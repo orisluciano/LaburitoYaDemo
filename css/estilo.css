@@ -1,0 +1,25 @@
+body {
+    background-color: aliceblue;
+    margin: 0px;
+}
+
+.bgAzul {
+    background-color: blue;
+    color: aliceblue;
+}
+
+.margin0 {
+    margin: 0px;
+}
+
+.padding5 {
+    padding: 5px;
+}
+
+.displayFlex {
+    display: flex;
+}
+
+.centrarContenido {
+    justify-content: center;
+}
