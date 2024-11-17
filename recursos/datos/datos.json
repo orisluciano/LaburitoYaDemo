@@ -1,0 +1,37 @@
+{
+    "trabajadores" : [
+        {"nombre" : "Luciano",
+        "descripcion" : "Soy un programador",
+        "rubros" : ["informatica"],
+        "especialidades" : ["desarrollo web", "apps android", "programas de escritorio"],
+        "zonaTrabajo" : ["remoto"],
+        "contactos" : [
+            {"tipo": "Mail", "descripcion" : "mimail"},
+            {"tipo" : "Linkedin", "descripcion" : "milinkedin"},
+            {"tipo" : "Celular", "descripcion" : "1233455676"}
+            ]
+        },
+        {"nombre" : "Manuel",
+        "descripcion" : "Soy un programador",
+        "rubros" : ["informatica"],
+        "especialidades" : ["desarrollo web", "apps android", "programas de escritorio"],
+        "zonaTrabajo" : ["remoto"],
+        "contactos" : [
+            {"tipo": "Mail", "descripcion" : "mimail"},
+            {"tipo" : "Linkedin", "descripcion" : "milinkedin"},
+            {"tipo" : "Celular", "descripcion" : "1233455676"}
+            ]
+        },
+        {"nombre" : "Francisco",
+        "descripcion" : "Soy un programador",
+        "rubros" : ["informatica"],
+        "especialidades" : ["desarrollo web", "apps android", "programas de escritorio"],
+        "zonaTrabajo" : ["remoto"],
+        "contactos" : [
+            {"tipo": "Mail", "descripcion" : "mimail"},
+            {"tipo" : "Linkedin", "descripcion" : "milinkedin"},
+            {"tipo" : "Celular", "descripcion" : "1233455676"}
+            ]
+        }
+    ]
+}

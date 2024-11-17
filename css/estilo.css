@@ -24,6 +24,10 @@ body {
     display: flex;
 }
 
+.displayBlock {
+    display: block;
+}
+
 .centrarContenido {
     justify-content: center;
 }
