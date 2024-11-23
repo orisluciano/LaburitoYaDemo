@@ -1,3 +1,5 @@
+import ModalBase from "./ModalBase.js";
+
 class BuscadorVista {
     dir = "./html/buscador.html";
     ids = { txtRubro : "txtRubro",
@@ -69,6 +71,9 @@ class BuscadorVista {
 
     abrilModal(datos){
         console.log(datos);
+        let modal = new ModalBase();
+        modal.abrirModal();
+        modal.llenarModal();
     }
 }
 
