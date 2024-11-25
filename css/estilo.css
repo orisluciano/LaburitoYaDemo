@@ -3,6 +3,21 @@ body {
     margin: 0px;
 }
 
+table {
+    width: 100%;
+    max-width: 100%;
+    background-color: transparent;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 5px;
+}
+
+tr {
+    text-align: center;
+}
+
 .bgAzul {
     background-color: #3f51b59e;
     color: aliceblue;
@@ -49,4 +64,28 @@ body {
     border-color: #3483fa;
     border-width: 1.5px;
     outline: 0;
+}
+
+.borderTopSolid {
+    border-top: solid 1px;
+    border-top-color: #dee2e6;
+}
+
+.borderBottomSolid {
+    border-bottom-style: solid;
+    border-bottom-color: #dee2e6;
+    border-bottom-width: 2px;
+}
+
+.divTabla {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #dee2e6;
+    margin: 10px;
+    padding: 5px;
+    width: 100%;
+}
+
+.width50 {
+    width: 50%;
 }

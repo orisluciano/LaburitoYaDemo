@@ -53,14 +53,17 @@ class BuscadorVista {
     crearFila(datos, padre){
         let esto = this
         let row = document.createElement("tr");
+        row.className = "borderTopSolid";
         row.onclick = function(params) {
             esto.abrilModal(datos);
         }
         padre.appendChild(row);
         let nombre = document.createElement("td");
+        nombre.className = "width50";
         nombre.innerHTML = datos.nombre;
         row.appendChild(nombre);
         let especialidades = document.createElement("td");
+        especialidades.className = "width50";
         let esps = "";
         datos.rubros.forEach(e => {
             esps = esps + e;
