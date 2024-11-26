@@ -98,3 +98,7 @@ tr {
 .width50 {
     width: 50%;
 }
+
+.cursorPointer {
+    cursor: pointer;
+}
