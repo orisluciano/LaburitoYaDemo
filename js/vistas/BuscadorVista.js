@@ -53,7 +53,7 @@ class BuscadorVista {
     crearFila(datos, padre){
         let esto = this
         let row = document.createElement("tr");
-        row.className = "borderTopSolid";
+        row.className = "borderTopSolid colorFilaTabla";
         row.onclick = function(params) {
             esto.abrilModal(datos);
         }

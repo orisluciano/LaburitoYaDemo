@@ -27,6 +27,15 @@ tr {
     color: #3f51b59e;
 }
 
+.colorFilaTabla {
+    color: #3f51b59e;
+}
+
+.colorFilaTabla:hover {
+    background-color: #3f51b59e;
+    color: aliceblue;
+}
+
 .margin0 {
     margin: 0px;
 }
