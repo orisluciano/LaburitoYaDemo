@@ -75,8 +75,7 @@ class BuscadorVista {
     abrilModal(datos){
         console.log(datos);
         let modal = new ModalBase();
-        modal.abrirModal();
-        modal.llenarModal();
+        modal.abrirModal("Desde el buscador");
     }
 }
 

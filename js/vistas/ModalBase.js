@@ -10,19 +10,23 @@ class ModalBase {
         
     }
 
-    async abrirModal(){
+    async abrirModal(contenido){
         let res = await fetch(this.archivo);
         let vista = await res.text();
         let modal = document.getElementById(this.id.modal);
         modal.innerHTML = "";
         modal.innerHTML = await vista;
+        modal.style.display = "block";
         this.funcionesModal();
+        this.llenarModal(contenido);
     }
 
     funcionesModal(){
+        let esto = this;
         let btnCerrar = document.getElementById(this.id.btnCerrarModal);
         btnCerrar.onclick = function () {
-            alert("proximamente");
+            let modal = document.getElementById(esto.id.modal);
+            modal.style.display = "none";
         }
     }
 
