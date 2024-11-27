@@ -18,6 +18,12 @@ tr {
     text-align: center;
 }
 
+svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
 .bgAzul {
     background-color: #3f51b59e;
     color: aliceblue;
