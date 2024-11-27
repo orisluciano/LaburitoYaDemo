@@ -40,6 +40,15 @@ tr {
     background-color: #cadbeb;
 }
 
+.btnBuscar {
+    border-style: none;
+    background-color: aliceblue;
+    color: #3f51b59e;
+    border-left-style: solid;
+    border-left-width: thin;
+    border-left-color: #dee2e6;
+}
+
 .colorFilaTabla {
     color: #3f51b59e;
 }
@@ -87,7 +96,7 @@ tr {
 
 .borderInputText:focus {
     border-style: solid;
-    border-color: #3483fa;
+    border-color: #3f51b59e;
     border-width: 1.5px;
     outline: 0;
 }
