@@ -19,8 +19,8 @@ tr {
 }
 
 svg {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     fill: currentColor;
 }
 
@@ -50,9 +50,6 @@ svg {
     border-style: none;
     background-color: aliceblue;
     color: #3f51b59e;
-    border-left-style: solid;
-    border-left-width: thin;
-    border-left-color: #dee2e6;
 }
 
 .colorFilaTabla {
@@ -94,6 +91,18 @@ svg {
     letter-spacing: 1px;
 }
 
+.borderLeft {
+    border-left-style: solid;
+    border-left-width: thin;
+    border-left-color: #dee2e6;
+}
+
+.borderRight {
+    border-right-style: solid;
+    border-right-width: thin;
+    border-right-color: #dee2e6;
+}
+
 .borderInputText {
     border-style: solid;
     border-width: 1.5px;
@@ -123,6 +132,14 @@ svg {
     border-radius: 10px;
 }
 
+.borderRadius15 {
+    border-radius: 15px;
+}
+
+.borderStyleNone{
+    border-style: none;
+}
+
 .divTabla {
     border-style: solid;
     border-width: 1px;
@@ -138,6 +155,20 @@ svg {
 
 .cursorPointer {
     cursor: pointer;
+}
+
+.fontSize16 {
+    font-size: 16px;
+}
+
+.inputText {
+    font-size: 16px;
+    border-style: none;
+    background-color: aliceblue;
+}
+
+.inputText:focus {
+    outline: 0;
 }
 
   /* The Modal (background) */
