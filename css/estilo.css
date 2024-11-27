@@ -23,8 +23,21 @@ tr {
     color: aliceblue;
 }
 
+.bgAliceblue {
+    background-color: aliceblue;
+}
+
 .colorAzul {
     color: #3f51b59e;
+}
+
+.btnAzulBlanco {
+    color: #3f51b59e;
+    background-color: aliceblue;
+}
+
+.btnAzulBlanco:hover {
+    background-color: #cadbeb;
 }
 
 .colorFilaTabla {
@@ -54,6 +67,10 @@ tr {
 
 .centrarContenido {
     justify-content: center;
+}
+
+.contentEnd {
+    justify-content: end;
 }
 
 .cabecera {
@@ -86,6 +103,11 @@ tr {
     border-bottom-width: 2px;
 }
 
+.bordeBoton {
+    border-style: none;
+    border-radius: 10px;
+}
+
 .divTabla {
     border-style: solid;
     border-width: 1px;
@@ -104,7 +126,7 @@ tr {
 }
 
   /* The Modal (background) */
-  .modal {
+.modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -120,9 +142,9 @@ tr {
   
   /* Modal Content */
   .modal-content {
-    background-color: #fefefe;
+    background-color: aliceblue;
     margin: auto;
-    padding: 20px;
+    padding: 1%;
     border: 1px solid #888;
     width: 33%;
     border-radius: 10px;
