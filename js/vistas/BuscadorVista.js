@@ -1,3 +1,4 @@
+import TrabajadorServicio from "../aplicacion/servicios/TrabajadorServicio.js";
 import ModalBase from "./ModalBase.js";
 
 class BuscadorVista {
@@ -6,6 +7,8 @@ class BuscadorVista {
         btnBuscar : "btnBuscar",
         tBody : "tBody"
     };
+    trabajadorService = new TrabajadorServicio();
+
     constructor(parameters) {
         
     }
@@ -33,10 +36,7 @@ class BuscadorVista {
     }
 
     async cargarDatos(rubro){
-        let dir = "./recursos/datos/datos.json";
-        let datos = await fetch(dir);
-        let json =  await datos.json();
-        return json;
+        return await this.trabajadorService.Buscar("","");;
     }
 
     async cargarTabla(rubro){
