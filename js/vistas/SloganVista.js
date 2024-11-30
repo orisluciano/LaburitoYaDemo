@@ -1,9 +1,11 @@
 import BuscadorVista from "./BuscadorVista.js";
+import ModalBase from "./ModalBase.js";
 
 class SloganVista {
     dir = "./html/slogan.html";
     ids = { 
-        btnIngresar : "btnIngresar",
+        btnBuscador : "btnBuscador",
+        btnPublicar : "btnPublicar"
     };
 
     constructor(parameters) {
@@ -21,15 +23,24 @@ class SloganVista {
 
     cargarFunciones(){
         let esto = this;
-        let btnIngresar = document.getElementById(this.ids.btnIngresar);
-        btnIngresar.onclick = function() {
+        let btnBuscador = document.getElementById(this.ids.btnBuscador);
+        btnBuscador.onclick = function() {
             esto.abrirBuscador();
+        }
+        let btnPublicar = document.getElementById(this.ids.btnPublicar);
+        btnPublicar.onclick = function() {
+            esto.abrirInicio();
         }
     }
 
     abrirBuscador(){
         let buscador = new BuscadorVista();
         buscador.CargarVista();
+    }
+
+    abrirInicio(){
+        let inicio = new ModalBase();
+        inicio.abrirModal("Inicio");
     }
 }
 
