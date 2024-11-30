@@ -1,5 +1,6 @@
 import BuscadorVista from "./BuscadorVista.js";
 import ModalBase from "./ModalBase.js";
+import ModalInicio from "./ModalInicio.js";
 
 class SloganVista {
     dir = "./html/slogan.html";
@@ -39,8 +40,8 @@ class SloganVista {
     }
 
     abrirInicio(){
-        let inicio = new ModalBase();
-        inicio.abrirModal("Inicio");
+        let inicio = new ModalInicio();
+        inicio.CargarVista();
     }
 }
 
