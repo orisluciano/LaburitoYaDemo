@@ -1,11 +1,11 @@
 import ModalBase from "./ModalBase.js";
-import ModalLogin from "./ModalLogin.js";
 
-class ModalInicio {
-    dir = "./html/modalInicio.html";
+class ModalLogin {
+    dir = "./html/modalLogin.html";
     ids = { 
-        btnLogin : "btnLogin",
-        btnCuenta : "btnCuenta"
+        txtUser : "txtUser",
+        txtPass : "txtPass",
+        btnIngresar : "btnIngresar"
     };
     constructor(parameters) {
         
@@ -14,9 +14,9 @@ class ModalInicio {
     async CargarVista() {
         let res = await fetch(this.dir);
         let vista = await res.text();
-        let inicio = new ModalBase();
+        let inicio = new ModalBase;
         await inicio.abrirModal(vista);
-        this.cargarFunciones();
+        //this.cargarFunciones();
     }
 
     cargarFunciones(){
@@ -30,15 +30,6 @@ class ModalInicio {
             esto.crearCuenta();
         }
     }
-
-    abrirLogin(){
-        let login = new ModalLogin();
-        login.CargarVista();
-    }
-
-    crearCuenta(){
-        alert("crearCuenta");
-    }
 }
 
-export default ModalInicio;
+export default ModalLogin;

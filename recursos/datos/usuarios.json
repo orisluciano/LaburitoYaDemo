@@ -1,0 +1,16 @@
+{
+    "usuarios" : [
+        {
+            "usuario" : "loris",
+            "pass" : "1234"
+        },
+        {
+            "usuario" : "moris",
+            "pass" : "1234"
+        },
+        {
+            "usuario" : "foris",
+            "pass" : "1234"
+        }
+    ]
+}

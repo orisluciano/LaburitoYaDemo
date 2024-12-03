@@ -61,6 +61,21 @@ svg {
     cursor: pointer;
 }
 
+.btnRelleno {
+    font-size: 16px;
+    border-style: none;
+    background-color: #3f51b59e;
+    color: aliceblue;
+    cursor: pointer;
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.btnRelleno:hover{
+    background-color:#4a61e09e
+}
+
 .colorFilaTabla {
     color: #3f51b59e;
 }
@@ -74,12 +89,20 @@ svg {
     margin: 0px;
 }
 
+.marginBotton20 {
+    margin-bottom: 20px;
+}
+
 .padding5 {
     padding: 5px;
 }
 
 .paddindTop2 {
     padding-top: 2%;
+}
+
+.padding15 {
+    padding: 15px;
 }
 
 .displayFlex {
@@ -153,6 +176,12 @@ svg {
     border-style: none;
 }
 
+.borderDivInput{
+    padding: 10px;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+}
+
 .divTabla {
     border-style: solid;
     border-width: 1px;
@@ -164,6 +193,10 @@ svg {
 
 .width50 {
     width: 50%;
+}
+
+.width100 {
+    width: 100%;
 }
 
 .cursorPointer {
