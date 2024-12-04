@@ -1,3 +1,4 @@
+import LoginServicio from "../aplicacion/servicios/LoginServicio.js";
 import ModalBase from "./ModalBase.js";
 
 class ModalLogin {
@@ -7,6 +8,7 @@ class ModalLogin {
         txtPass : "txtPass",
         btnIngresar : "btnIngresar"
     };
+    loginService = new LoginServicio();
     constructor(parameters) {
         
     }
@@ -16,19 +18,22 @@ class ModalLogin {
         let vista = await res.text();
         let inicio = new ModalBase;
         await inicio.abrirModal(vista);
-        //this.cargarFunciones();
+        this.cargarFunciones();
     }
 
     cargarFunciones(){
         let esto = this;
-        let btnLogin = document.getElementById(this.ids.btnLogin);
-        btnLogin.onclick = function() {
-            esto.abrirLogin();
+        let btnIngresar = document.getElementById(this.ids.btnIngresar);
+        btnIngresar.onclick = function() {
+            esto.btnIngresarOnClick();
         }
-        let btnCuenta = document.getElementById(this.ids.btnCuenta);
-        btnCuenta.onclick = function() {
-            esto.crearCuenta();
-        }
+    }
+
+    async btnIngresarOnClick(){
+        let txtUser = document.getElementById(this.ids.txtUser);
+        let txtPass = document.getElementById(this.ids.txtPass);
+        let res = await this.loginService.verificarIngreso(txtUser.value , txtPass.value);
+        console.log(await res);
     }
 }
 
