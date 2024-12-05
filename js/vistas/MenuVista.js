@@ -1,3 +1,5 @@
+import SloganVista from "./SloganVista.js";
+
 class MenuVista {
     dir = "./html/menu.html";
     ids = { 
@@ -22,6 +24,8 @@ class MenuVista {
         menu.innerHTML = await vista;
         let div = document.getElementById(this.ids.divMenu);
         div.className = "divMenu dropdown";
+        let root = document.getElementById("root");
+        root.innerHTML = "";
         this.cargarFunciones();
     }
 
@@ -66,7 +70,10 @@ class MenuVista {
     }
 
     btnsalir(){
-        alert("Proximamente");
+        let div = document.getElementById(this.ids.divMenu);
+        div.className = "divMenu";
+        let slogan = new SloganVista();
+        slogan.CargarVista();
     }
 }
 

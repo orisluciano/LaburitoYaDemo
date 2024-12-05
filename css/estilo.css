@@ -222,7 +222,7 @@ svg {
 }
 
 .divMenu {
-    display: flex;
+    display: none;
     height: 42px;
     position: fixed;
 }
