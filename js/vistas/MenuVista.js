@@ -1,8 +1,10 @@
 class MenuVista {
     dir = "./html/menu.html";
     ids = { 
-        txtUser : "txtUser",
-        txtPass : "txtPass",
+        btnTrabajador : "btnTrabajador",
+        btnOferta : "btnOferta",
+        btnConfigUSer : "btnConfigUSer",
+        btnSugerencias : "btnSugerencias",
         btnConfig : "btnConfig",
         btnsalir : "btnSalir",
         contenidoMenu : "contenidoMenu",
@@ -20,15 +22,51 @@ class MenuVista {
         menu.innerHTML = await vista;
         let div = document.getElementById(this.ids.divMenu);
         div.className = "divMenu dropdown";
-        //this.cargarFunciones();
+        this.cargarFunciones();
     }
 
     cargarFunciones(){
         let esto = this;
-        let btnBuscar = document.getElementById(this.ids.btnBuscar);
-        btnBuscar.onclick = function() {
-            esto.buscar();            
+        let btnTrabajador = document.getElementById(this.ids.btnTrabajador);
+        btnTrabajador.onclick = function() {
+            esto.btnTrabajadorOnClick();           
         }
+        let btnOferta = document.getElementById(this.ids.btnOferta);
+        btnOferta.onclick = function() {
+            esto.btnOfertaOnclick();
+        }
+        let btnConfigUSer = document.getElementById(this.ids.btnConfigUSer);
+        btnConfigUSer.onclick = function() {
+            esto.btnConfigUSerOnClick();
+        }
+        let btnSugerencias = document.getElementById(this.ids.btnSugerencias);
+        btnSugerencias.onclick = function() {
+            esto.btnSugerencias();
+        }
+        let btnSalir = document.getElementById(this.ids.btnsalir);
+        btnSalir.onclick = function() {
+            esto.btnsalir();
+        }
+    }
+
+    btnTrabajadorOnClick(){
+        alert("Proximamente");
+    }
+
+    btnOfertaOnclick(){
+        alert("Proximamente");
+    }
+
+    btnConfigUSerOnClick(){
+        alert("Proximamente");
+    }
+
+    btnSugerencias(){
+        alert("Proximamanete");
+    }
+
+    btnsalir(){
+        alert("Proximamente");
     }
 }
 
