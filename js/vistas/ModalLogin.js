@@ -1,4 +1,5 @@
 import LoginServicio from "../aplicacion/servicios/LoginServicio.js";
+import MenuVista from "./MenuVista.js";
 import ModalBase from "./ModalBase.js";
 
 class ModalLogin {
@@ -9,6 +10,8 @@ class ModalLogin {
         btnIngresar : "btnIngresar"
     };
     loginService = new LoginServicio();
+    modalBase = new ModalBase();
+
     constructor(parameters) {
         
     }
@@ -16,8 +19,7 @@ class ModalLogin {
     async CargarVista() {
         let res = await fetch(this.dir);
         let vista = await res.text();
-        let inicio = new ModalBase;
-        await inicio.abrirModal(vista);
+        await this.modalBase.abrirModal(vista);
         this.cargarFunciones();
     }
 
@@ -34,6 +36,13 @@ class ModalLogin {
         let txtPass = document.getElementById(this.ids.txtPass);
         let res = await this.loginService.verificarIngreso(txtUser.value , txtPass.value);
         console.log(await res);
+        if (res.bandera === true) {
+            let menu = new MenuVista();
+            menu.CargarVista();
+            this.modalBase.cerrarModal();
+        } else {
+            alert(res.mensaje);
+        }
     }
 }
 

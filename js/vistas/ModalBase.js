@@ -25,8 +25,7 @@ class ModalBase {
         let esto = this;
         let btnCerrar = document.getElementById(this.id.btnCerrarModal);
         btnCerrar.onclick = function () {
-            let modal = document.getElementById(esto.id.modal);
-            modal.style.display = "none";
+            esto.cerrarModal();
         }
     }
 
@@ -34,6 +33,11 @@ class ModalBase {
         let contenidoModal = document.getElementById(this.id.contenidoModal);
         contenidoModal.innerHTML = "";
         contenidoModal.innerHTML = contenido;
+    }
+
+    cerrarModal(){
+        let modal = document.getElementById(this.id.modal);
+        modal.style.display = "none";
     }
 }
 
