@@ -1,4 +1,5 @@
 import SloganVista from "./SloganVista.js";
+import SugerenciaVista from "./SugereciasVista.js";
 
 class MenuVista {
     dir = "./html/menu.html";
@@ -66,7 +67,8 @@ class MenuVista {
     }
 
     btnSugerencias(){
-        alert("Proximamanete");
+        let sugerencia = new SugerenciaVista();
+        sugerencia.CargarVista();
     }
 
     btnsalir(){
