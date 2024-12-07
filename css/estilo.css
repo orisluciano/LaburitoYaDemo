@@ -221,6 +221,14 @@ svg {
     width: 100%;
 }
 
+.divBorde {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #dee2e6;
+    margin: 10px;
+    padding: 5px;
+}
+
 .divMenu {
     display: none;
     height: 42px;
@@ -254,6 +262,10 @@ svg {
     outline: 0;
 }
 
+.formWidth {
+    width: 33%;
+}
+
   /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -279,7 +291,7 @@ svg {
     border-radius: 10px;
   }
   @media (max-width : 900px) {
-    .modal-content{
+    .modal-content, .formWidth{
         width: 95%;
     }
   }
