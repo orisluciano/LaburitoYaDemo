@@ -1,3 +1,4 @@
+import PerfilTrabajadorVista from "./PerfilTrabajadorVista.js";
 import SloganVista from "./SloganVista.js";
 import SugerenciaVista from "./SugereciasVista.js";
 
@@ -55,7 +56,8 @@ class MenuVista {
     }
 
     btnTrabajadorOnClick(){
-        alert("Proximamente");
+        let trabajador = new PerfilTrabajadorVista();
+        trabajador.CargarVista();
     }
 
     btnOfertaOnclick(){
