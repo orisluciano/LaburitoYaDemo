@@ -102,6 +102,22 @@ svg {
     background-color: hsl(0deg 0% 0% / 7%);
 }
 
+.btnForm {
+    border-style: none;
+    background-color: aliceblue;
+    color: #3f51b59e;
+}
+
+.btnForm:hover {
+    color: #4a61e09e;
+}
+
+.btnCentrado {
+    padding: 0px;
+    margin: 0px;
+    align-items: center;
+}
+
 .colorFilaTabla {
     color: #3f51b59e;
 }
@@ -129,6 +145,10 @@ svg {
 
 .padding15 {
     padding: 15px;
+}
+
+.paddingLeft5 {
+    padding-left: 5px;
 }
 
 .displayFlex {
