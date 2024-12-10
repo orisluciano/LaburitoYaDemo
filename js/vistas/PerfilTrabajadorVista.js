@@ -1,8 +1,11 @@
 class PerfilTrabajadorVista {
     dir = "./html/perfilTrabajador.html";
-    ids = { 
-        btnBuscador : "btnBuscador",
-        btnPublicar : "btnPublicar"
+    ids = {
+        btnNombre : "btnNombre",
+        btnRubros : "btnRubros",
+        btnZonas : "btnZonas",
+        btnContactos : "btnContactos",
+        txtNombre : "txtNombre"
     };
     constructor(parameters) {
         
@@ -14,18 +17,26 @@ class PerfilTrabajadorVista {
         let root = document.getElementById("root");
         root.innerHTML = "";
         root.innerHTML = await vista;
-        //this.cargarFunciones();
+        this.cargarFunciones();
     }
 
     cargarFunciones(){
         let esto = this;
-        let btnBuscador = document.getElementById(this.ids.btnBuscador);
-        btnBuscador.onclick = function() {
-            esto.abrirBuscador();
+        let btnNombre = document.getElementById(this.ids.btnNombre);
+        btnNombre.onclick = function() {
+            alert("proximamente");
         }
-        let btnPublicar = document.getElementById(this.ids.btnPublicar);
-        btnPublicar.onclick = function() {
-            esto.abrirInicio();
+        let btnRubros = document.getElementById(this.ids.btnRubros);
+        btnRubros.onclick = function() {
+            alert("proximamente");
+        }
+        let btnZonas = document.getElementById(this.ids.btnZonas);
+        btnZonas.onclick = function() {
+            alert("proximamente");
+        }
+        let btnContactos = document.getElementById(this.ids.btnContactos);
+        btnContactos.onclick = function() {
+            alert("proximamanete");
         }
     }
 }
