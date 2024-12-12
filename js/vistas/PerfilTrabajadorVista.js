@@ -5,7 +5,10 @@ class PerfilTrabajadorVista {
         btnRubros : "btnRubros",
         btnZonas : "btnZonas",
         btnContactos : "btnContactos",
-        txtNombre : "txtNombre"
+        txtNombre : "txtNombre",
+        listaRubros : "listaRubros",
+        listaZonas : "listaZonas",
+        listaContactos : "listaContactos"
     };
     constructor(parameters) {
         
