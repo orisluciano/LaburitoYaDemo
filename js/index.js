@@ -1,4 +1,4 @@
-import SloganVista from "./vistas/SloganVista.js";
+import BuscadorVista from "./vistas/BuscadorVista.js";
 
-let slogan = new SloganVista();
-slogan.CargarVista();
+let buscador = new BuscadorVista();
+buscador.CargarVista();

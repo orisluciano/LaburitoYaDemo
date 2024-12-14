@@ -45,6 +45,29 @@ class LoginServicio {
         });
         return bandera;
     }
+
+    guardarLogueo(usuario){
+        localStorage.setItem("usuario", usuario);
+    }
+
+    verificarLogueo(){
+        let respuesta = {
+            usuario : null,
+            errores : null   
+        }
+        let usuario = localStorage.getItem("usuario");
+        if (usuario != null) {
+            respuesta.usuario = usuario;
+        } else {
+            respuesta.errores = "Usuario no logueado";
+        }
+        
+        return respuesta;
+    }
+
+    getLogin(){
+
+    }
 }
 
 export default LoginServicio;
