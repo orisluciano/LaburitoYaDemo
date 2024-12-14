@@ -1,4 +1,4 @@
-import BuscadorVista from "./vistas/BuscadorVista.js";
+import InicioVista from "./vistas/InicioVista.js";
 
-let buscador = new BuscadorVista();
-buscador.CargarVista();
+let inicio = new InicioVista()
+inicio.iniciarApp();

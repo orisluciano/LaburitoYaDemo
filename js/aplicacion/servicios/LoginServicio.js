@@ -41,6 +41,7 @@ class LoginServicio {
         lista.usuarios.forEach(e => {
             if (e.usuario === usuario && e.pass=== contraseña) {
                 bandera = true;
+                this.guardarLogueo(e.usuario);
             }
         });
         return bandera;
@@ -48,6 +49,10 @@ class LoginServicio {
 
     guardarLogueo(usuario){
         localStorage.setItem("usuario", usuario);
+    }
+
+    logout(){
+        localStorage.clear();
     }
 
     verificarLogueo(){
@@ -63,10 +68,6 @@ class LoginServicio {
         }
         
         return respuesta;
-    }
-
-    getLogin(){
-
     }
 }
 

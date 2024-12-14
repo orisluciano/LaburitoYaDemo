@@ -1,3 +1,6 @@
+import LoginServicio from "../aplicacion/servicios/LoginServicio.js";
+import BuscadorVista from "./BuscadorVista.js";
+import InicioVista from "./InicioVista.js";
 import PerfilTrabajadorVista from "./PerfilTrabajadorVista.js";
 import SloganVista from "./SloganVista.js";
 import SugerenciaVista from "./SugereciasVista.js";
@@ -5,6 +8,7 @@ import SugerenciaVista from "./SugereciasVista.js";
 class MenuVista {
     dir = "./html/menu.html";
     ids = { 
+        btnBuscador : "btnBuscador",
         btnTrabajador : "btnTrabajador",
         btnOferta : "btnOferta",
         btnConfigUSer : "btnConfigUSer",
@@ -33,6 +37,10 @@ class MenuVista {
 
     cargarFunciones(){
         let esto = this;
+        let btnBuscador = document.getElementById(this.ids.btnBuscador);
+        btnBuscador.onclick = function() {
+            esto.btnBuscadorOnClick();
+        }
         let btnTrabajador = document.getElementById(this.ids.btnTrabajador);
         btnTrabajador.onclick = function() {
             esto.btnTrabajadorOnClick();           
@@ -55,6 +63,11 @@ class MenuVista {
         }
     }
 
+    btnBuscadorOnClick(){
+        let buscador = new BuscadorVista();
+        buscador.CargarVista();
+    }
+
     btnTrabajadorOnClick(){
         let trabajador = new PerfilTrabajadorVista();
         trabajador.CargarVista();
@@ -74,10 +87,10 @@ class MenuVista {
     }
 
     btnsalir(){
-        let div = document.getElementById(this.ids.divMenu);
-        div.className = "divMenu";
-        let slogan = new SloganVista();
-        slogan.CargarVista();
+        let loginService = new LoginServicio();
+        loginService.logout();
+        let inicio = new InicioVista();
+        inicio.iniciarApp();
     }
 }
 

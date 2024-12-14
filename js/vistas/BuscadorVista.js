@@ -30,6 +30,10 @@ class BuscadorVista {
         }
     }
 
+    cargarMenu(){
+        
+    }
+
     buscar(){
         let txtRubro = document.getElementById(this.ids.txtRubro);
         this.cargarTabla(txtRubro.value);
