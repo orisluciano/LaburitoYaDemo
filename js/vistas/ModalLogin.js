@@ -7,6 +7,7 @@ class ModalLogin {
     ids = { 
         txtUser : "txtUser",
         txtPass : "txtPass",
+        lblErrores : "lblErrores",
         btnIngresar : "btnIngresar"
     };
     loginService = new LoginServicio();
@@ -41,7 +42,8 @@ class ModalLogin {
             menu.CargarVista();
             this.modalBase.cerrarModal();
         } else {
-            alert(res.mensaje);
+            let errores = document.getElementById(this.ids.lblErrores);
+            errores.innerHTML = res.mensaje;
         }
     }
 }
