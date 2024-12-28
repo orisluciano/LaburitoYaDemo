@@ -1,6 +1,10 @@
+import TokenServicio from "./TokenServicio.js";
+
 class LoginServicio {
     dir = "./recursos/datos/usuarios.json";
     api = "http://localhost/backendlaburitoya/api/login";
+    tokenService = new TokenServicio();
+
     constructor() {
         
     }
@@ -22,7 +26,8 @@ class LoginServicio {
         console.log(await json);
         if (await json.respuesta.token != null) {
             res.bandera = true;
-            res.mensaje = "Bienvenido al sistema"
+            res.mensaje = "Bienvenido al sistema";
+            this.tokenService.SetToken(await json.respuesta.token);
         } else {
             await json.errores.forEach(e => {
                 res.mensaje = res.mensaje;
@@ -88,9 +93,10 @@ class LoginServicio {
             usuario : null,
             errores : null   
         }
-        let usuario = localStorage.getItem("usuario");
+        //let usuario = localStorage.getItem("LaburitoToken");
+        let usuario = this.tokenService.GetToken();
         if (usuario != null) {
-            respuesta.usuario = usuario;
+            respuesta.usuario = usuario;console.log(usuario);
         } else {
             respuesta.errores = "Usuario no logueado";
         }
