@@ -35,7 +35,8 @@ class ModalLogin {
     async btnIngresarOnClick(){
         let txtUser = document.getElementById(this.ids.txtUser);
         let txtPass = document.getElementById(this.ids.txtPass);
-        let res = await this.loginService.verificarIngreso(txtUser.value , txtPass.value);
+        //let res = await this.loginService.verificarIngreso(txtUser.value , txtPass.value);
+        let res = await this.loginService.login(txtUser.value , txtPass.value);
         console.log(await res);
         if (res.bandera === true) {
             let menu = new MenuVista();

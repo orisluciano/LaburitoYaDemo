@@ -1,7 +1,35 @@
 class LoginServicio {
     dir = "./recursos/datos/usuarios.json";
+    api = "http://localhost/backendlaburitoya/api/login";
     constructor() {
         
+    }
+
+    async login(usuario, contraseña){
+        let res = {
+            bandera : false,
+            mensaje : ""
+        };
+        let body = {
+            usuario : usuario,
+            contraseña : contraseña
+        }; 
+        let peticion = await fetch(this.api,{
+            method : "POST",
+            body: JSON.stringify(body)
+        });
+        let json = await peticion.json();
+        console.log(await json);
+        if (await json.respuesta.token != null) {
+            res.bandera = true;
+            res.mensaje = "Bienvenido al sistema"
+        } else {
+            await json.errores.forEach(e => {
+                res.mensaje = res.mensaje;
+                res.mensaje = res.mensaje + ", " + e;
+            });
+        }
+        return res;
     }
 
     async verificarIngreso(usuario, contraseña){
