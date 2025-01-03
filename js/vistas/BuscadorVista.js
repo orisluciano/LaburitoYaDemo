@@ -40,13 +40,13 @@ class BuscadorVista {
     }
 
     async cargarDatos(rubro){
-        return await this.trabajadorService.Buscar("","");;
+        return await this.trabajadorService.Buscar(0,10);;
     }
 
     async cargarTabla(rubro){
         let esto = this;
         let datos = await this.cargarDatos(rubro);
-        let trabajadores = datos.trabajadores;  console.log(trabajadores);
+        let trabajadores = datos.respuesta.resultados;  console.log(trabajadores);
         let tabla = document.getElementById(this.ids.tBody);
         tabla.innerHTML = "";
         trabajadores.forEach(e => {

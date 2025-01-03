@@ -1,5 +1,9 @@
+import PeticionesHttp from "../ultiles/PeticionesHttp.js";
+
 class TrabajadorServicio {
-    dir = "./recursos/datos/datos.json";
+    //dir = "./recursos/datos/datos.json";
+    dir = "http://localhost/BackendLaburitoYa/api/trabajador/";
+    peticiones = new PeticionesHttp();
 
     constructor(parameters) {
         
@@ -18,8 +22,11 @@ class TrabajadorServicio {
     }
 
     async Buscar(desde, cantidad){
-        let datos = await fetch(this.dir);
-        let json =  await datos.json();
+        let dir = this.dir + desde + "/" + cantidad;
+        let base = await this.peticiones.peticionGet(dir, "GET");
+        let json = await base;
+        //let datos = await fetch(this.dir);
+        //let json =  await datos.json();
         return json;
     }
 
