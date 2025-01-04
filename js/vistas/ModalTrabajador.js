@@ -1,19 +1,36 @@
 import ModalBase from "./ModalBase.js";
 
 class ModalTrabajador {
-    archivo = "./html/modalTrabajador.html";
+    dir = "./html/modalTrabajador.html";
     ids = { nombreTrabajador : "nombreTrabajador",
         descripTrabajador : "descripTrabajador",
-        contactoTrabajador : "contactoTrabajador"
+        rubrosTrabajador : "rubrosTrabajador",
+        contactoTrabajador : "contactoTrabajador",
+        opinionTrab : "opinionTrab"
     }
     base = new ModalBase();
-    constructor(parameters) {
-        
+    datos = {
+        id : null,
+        nombre :"",
+        apellido :""
+    };
+    constructor(datos) {
+        this.datos.id = datos.id;
+        this.datos.nombre = datos.nombre;
+        this.datos.apellido = datos.apellido;
     }
 
-    cargar(){
-        this.base.abrirModal();
-        this.base.llenarModal("algo");
+    async cargarVista(){
+        let res = await fetch(this.dir);
+        let vista = await res.text();
+        await this.base.abrirModal(vista);
+        this.mostrarDatos();
+    }
+
+    mostrarDatos(){
+        let nombre = document.getElementById(this.ids.nombreTrabajador);
+        nombre.innerHTML = "";
+        nombre.innerHTML = this.datos.nombre + " " + this.datos.apellido;
     }
 }
 

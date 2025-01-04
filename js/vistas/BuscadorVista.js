@@ -1,5 +1,5 @@
 import TrabajadorServicio from "../aplicacion/servicios/TrabajadorServicio.js";
-import ModalBase from "./ModalBase.js";
+import ModalTrabajador from "./ModalTrabajador.js";
 
 class BuscadorVista {
     dir = "./html/buscador.html";
@@ -46,12 +46,22 @@ class BuscadorVista {
     async cargarTabla(rubro){
         let esto = this;
         let datos = await this.cargarDatos(rubro);
-        let trabajadores = datos.respuesta.resultados;  console.log(trabajadores);
-        let tabla = document.getElementById(this.ids.tBody);
-        tabla.innerHTML = "";
-        trabajadores.forEach(e => {
-            esto.crearFila(e, tabla);
-        });
+        if (datos.errores.length > 0) {
+            alert("Hubo un error. Intente de nuevo");
+        } else {
+            let cantTrab = datos.respuesta.cantidad;
+            if (datos.respuesta.cantidad > 0) {
+                let trabajadores = datos.respuesta.resultados;
+                let tabla = document.getElementById(this.ids.tBody);
+                tabla.innerHTML = "";
+                trabajadores.forEach(e => {
+                    esto.crearFila(e, tabla);
+                });    
+            } else {
+                alert("No se encontraron trabajadores");
+            }
+               
+        }
     }
 
     crearFila(datos, padre){
@@ -64,22 +74,22 @@ class BuscadorVista {
         padre.appendChild(row);
         let nombre = document.createElement("td");
         nombre.className = "width50";
-        nombre.innerHTML = datos.nombre;
+        nombre.innerHTML = datos.nombre + " " + datos.apellido;
         row.appendChild(nombre);
         let especialidades = document.createElement("td");
         especialidades.className = "width50";
-        let esps = "";
+        /*let esps = "";
         datos.rubros.forEach(e => {
             esps = esps + e;
         });
         especialidades.innerHTML = esps;
-        row.appendChild(especialidades);
+        row.appendChild(especialidades);*/
     }
 
     abrilModal(datos){
         console.log(datos);
-        let modal = new ModalBase();
-        modal.abrirModal("Desde el buscador");
+        let modal = new ModalTrabajador(datos)
+        modal.cargarVista();
     }
 }
 

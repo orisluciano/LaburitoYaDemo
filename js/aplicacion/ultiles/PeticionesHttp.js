@@ -1,5 +1,6 @@
 class PeticionesHttp {
     respuesta = {
+        errores : []
     }
     constructor() {
         
