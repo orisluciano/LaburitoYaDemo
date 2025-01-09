@@ -1,23 +1,21 @@
 import PeticionesHttp from "../utiles/PeticionesHttp.js";
 
-class TrabajadorServicio {
-    //dir = "./recursos/datos/datos.json";
-    dir = "http://localhost/BackendLaburitoYa/api/trabajador/";
+class TrabajadorRubroServicio {
+    dir = "http://localhost/BackendLaburitoYa/api/trabajadorrubro/";
     peticiones = new PeticionesHttp();
-
     constructor(parameters) {
         
     }
 
-    NuevoTrabador(trabajador) {
+    NuevoTrabadorRubro(tr) {
         alert("No Implementado");
     }
 
-    ModificarTrabajador(trabajador){
+    ModificarTrabajadorRubro(tr){
         alert("No Implementado");
     }
 
-    EliminarTrabajador(id){
+    EliminarTrabajadorRubro(id){
         alert("No Implementado");
     }
 
@@ -34,10 +32,12 @@ class TrabajadorServicio {
         alert("No Implementado");
     }
 
-    BuscarPorRubro(rubro){
-        alert("No Implementado");
-
+    async BuscarRubrosPorTrabajador(trabajadorId){
+        let dir = this.dir + "rubros/" + trabajadorId;
+        let base = await this.peticiones.peticionGet(dir, "GET");
+        let json = await base;
+        return json;
     }
 }
 
-export default TrabajadorServicio;
+export default TrabajadorRubroServicio;
