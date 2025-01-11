@@ -1,3 +1,4 @@
+import TrabajadorContactoServicio from "../aplicacion/servicios/TrabajadorContactoServicio.js";
 import TrabajadorRubroServicio from "../aplicacion/servicios/TrabajadorRubroServicio.js";
 import ModalBase from "./ModalBase.js";
 
@@ -16,6 +17,7 @@ class ModalTrabajador {
         apellido :""
     };
     trabajadorRubroServicio = new TrabajadorRubroServicio();
+    trabajadorContactoServicio = new TrabajadorContactoServicio();
 
     constructor(datos) {
         this.datos.id = datos.id;
@@ -35,11 +37,34 @@ class ModalTrabajador {
         nombre.innerHTML = "";
         nombre.innerHTML = this.datos.nombre + " " + this.datos.apellido;
         await this.getRubrosByTrabajador();
+        await this.getContactosByTrabajador();
     }
 
     async getRubrosByTrabajador(){
         let base = await this.trabajadorRubroServicio.BuscarRubrosPorTrabajador(this.datos.id);
         let rubros = document.getElementById(this.ids.rubrosTrabajador);
+        if (base.errores.length > 0) {
+            let r = document.createElement("li");
+            r.innerHTML = "Hubo un error. Intente de nuevo";
+            rubros.appendChild(r);
+        } else {
+            if (base.respuesta.resultados.length > 0) {
+                base.respuesta.resultados.forEach(e => {
+                    let r = document.createElement("li");
+                    r.innerHTML = e.descripcion;
+                    rubros.appendChild(r);
+                });   
+            } else {
+                let r = document.createElement("li");
+                    r.innerHTML = "No hay elementos para mostrar";
+                    rubros.appendChild(r);
+            }
+        }
+    }
+
+    async getContactosByTrabajador(){
+        let base = await this.trabajadorContactoServicio.BuscarContactosPorTrabajador(this.datos.id);
+        let rubros = document.getElementById(this.ids.contactoTrabajador);
         if (base.errores.length > 0) {
             let r = document.createElement("li");
             r.innerHTML = "Hubo un error. Intente de nuevo";
