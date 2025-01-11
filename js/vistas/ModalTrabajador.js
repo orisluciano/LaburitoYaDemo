@@ -40,11 +40,23 @@ class ModalTrabajador {
     async getRubrosByTrabajador(){
         let base = await this.trabajadorRubroServicio.BuscarRubrosPorTrabajador(this.datos.id);
         let rubros = document.getElementById(this.ids.rubrosTrabajador);
-        base.respuesta.resultados.forEach(e => {
+        if (base.errores.length > 0) {
             let r = document.createElement("li");
-            r.innerHTML = e.descripcion;
+            r.innerHTML = "Hubo un error. Intente de nuevo";
             rubros.appendChild(r);
-        });
+        } else {
+            if (base.respuesta.resultados.length > 0) {
+                base.respuesta.resultados.forEach(e => {
+                    let r = document.createElement("li");
+                    r.innerHTML = e.descripcion;
+                    rubros.appendChild(r);
+                });   
+            } else {
+                let r = document.createElement("li");
+                    r.innerHTML = "No hay elementos para mostrar";
+                    rubros.appendChild(r);
+            }
+        }
     }
 }
 
