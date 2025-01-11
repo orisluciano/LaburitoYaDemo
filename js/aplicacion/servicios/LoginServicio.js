@@ -14,26 +14,32 @@ class LoginServicio {
             bandera : false,
             mensaje : ""
         };
-        let body = {
-            usuario : usuario,
-            contraseña : contraseña
-        }; 
-        let peticion = await fetch(this.api,{
-            method : "POST",
-            body: JSON.stringify(body)
-        });
-        let json = await peticion.json();
-        console.log(await json);
-        if (await json.respuesta.token != null) {
-            res.bandera = true;
-            res.mensaje = "Bienvenido al sistema";
-            this.tokenService.SetToken(await json.respuesta.token);
-        } else {
-            await json.errores.forEach(e => {
-                res.mensaje = res.mensaje;
-                res.mensaje = res.mensaje + ", " + e;
+        try {
+            let body = {
+                usuario : usuario,
+                contraseña : contraseña
+            }; 
+            let peticion = await fetch(this.api,{
+                method : "POST",
+                body: JSON.stringify(body)
             });
+            let json = await peticion.json();
+            console.log(await json);
+            if (await json.respuesta.token != null) {
+                res.bandera = true;
+                res.mensaje = "Bienvenido al sistema";
+                this.tokenService.SetToken(await json.respuesta.token);
+            } else {
+                await json.errores.forEach(e => {
+                    res.mensaje = res.mensaje;
+                    res.mensaje = res.mensaje + ", " + e;
+                });
+            }    
+        } catch (error) {
+          console.log(error);
+          res.mensaje = "Hubo un error. Intente de nuevo."  
         }
+        
         return res;
     }
 
