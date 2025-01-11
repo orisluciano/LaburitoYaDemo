@@ -34,3 +34,5 @@ class RubroServicio {
         return json;
     }
 }
+
+export default RubroServicio;
