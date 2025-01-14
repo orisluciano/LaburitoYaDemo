@@ -1,4 +1,5 @@
 import TrabajadorContactoServicio from "../aplicacion/servicios/TrabajadorContactoServicio.js";
+import TrabajadorOpinionServicio from "../aplicacion/servicios/TrabajadorOpinionServicio.js";
 import TrabajadorRubroServicio from "../aplicacion/servicios/TrabajadorRubroServicio.js";
 import ModalBase from "./ModalBase.js";
 
@@ -18,6 +19,7 @@ class ModalTrabajador {
     };
     trabajadorRubroServicio = new TrabajadorRubroServicio();
     trabajadorContactoServicio = new TrabajadorContactoServicio();
+    trabajadorOpinionServicio = new TrabajadorOpinionServicio();
 
     constructor(datos) {
         this.datos.id = datos.id;
@@ -38,6 +40,7 @@ class ModalTrabajador {
         nombre.innerHTML = this.datos.nombre + " " + this.datos.apellido;
         await this.getRubrosByTrabajador();
         await this.getContactosByTrabajador();
+        await this.getOpinionesByTrabajador();
     }
 
     async getRubrosByTrabajador(){
@@ -74,6 +77,28 @@ class ModalTrabajador {
                 base.respuesta.resultados.forEach(e => {
                     let r = document.createElement("li");
                     r.innerHTML = e.descripcion;
+                    rubros.appendChild(r);
+                });   
+            } else {
+                let r = document.createElement("li");
+                    r.innerHTML = "No hay elementos para mostrar";
+                    rubros.appendChild(r);
+            }
+        }
+    }
+
+    async getOpinionesByTrabajador() {
+        let base = await this.trabajadorOpinionServicio.BuscarOpinionesPorTrabajador(this.datos.id, 0, 10);
+        let rubros = document.getElementById(this.ids.opinionTrab);
+        if (base.errores.length > 0) {
+            let r = document.createElement("li");
+            r.innerHTML = "Hubo un error. Intente de nuevo";
+            rubros.appendChild(r);
+        } else {
+            if (base.respuesta.resultados.length > 0) {
+                base.respuesta.resultados.forEach(e => {
+                    let r = document.createElement("li");
+                    r.innerHTML = e.opinion;
                     rubros.appendChild(r);
                 });   
             } else {
