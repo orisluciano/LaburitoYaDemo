@@ -1,7 +1,7 @@
 import PeticionesHttp from "../utiles/PeticionesHttp.js";
 import TokenServicio from "../servicios/TokenServicio.js";
 
-class TrabajadorServicio {
+class TrabajadorUsuarioServicio {
     //dir = "./recursos/datos/datos.json";
     dir = "http://localhost/BackendLaburitoYa/api/trabajador/";
     peticiones = new PeticionesHttp();
@@ -11,18 +11,18 @@ class TrabajadorServicio {
         
     }
 
-    async nuevoTrabajador(trabajador) {
+    async nuevoTrabajadorUsuario(trabajador) {
         let dir = this.dir;
         let base = await this.peticiones.peticionesVarias(dir, "POST", trabajador, this.tokenService.BearerToken());
         let json = await base;
         return json;
     }
 
-    nodificarTrabajador(trabajador){
+    nodificarTrabajadorUsuario(trabajador){
         alert("No Implementado");
     }
 
-    eliminarTrabajador(id){
+    eliminarTrabajadorUsuario(id){
         alert("No Implementado");
     }
 
@@ -33,17 +33,16 @@ class TrabajadorServicio {
         return json;
     }
 
-    async buscarPorId(id){
-        let dir = this.dir + id;
-        let base = await this.peticiones.peticionGet(dir, "GET");
+    buscarPorId(id){
+        alert("No Implementado");
+    }
+
+    async buscarPorUsuarioId(id){
+        let dir = this.dir + "usuario/"+ id;
+        let base = await this.peticiones.getWithToken(dir, this.tokenService.BearerToken());
         let json = await base;
         return json;
     }
-
-    buscarPorRubro(rubro){
-        alert("No Implementado");
-
-    }
 }
 
-export default TrabajadorServicio;
+export default TrabajadorUsuarioServicio;
