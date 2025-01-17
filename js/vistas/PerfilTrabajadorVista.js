@@ -5,8 +5,9 @@ import TrabajadorUsuarioServicio from "../aplicacion/servicios/TrabajadorUsuario
 class PerfilTrabajadorVista {
     dir = "./html/perfilTrabajador.html";
     ids = {
-        btnEditar : "btnEditar",
-        btnCancelar : "btnCancelar",
+        btnEditarApiNom : "btnEditarApiNom",
+        btnCancelarApiNom : "btnCancelarApiNom",
+        btnModificarApiNom : "btnModificarApiNom",
         btnNombre : "btnNombre",
         btnRubros : "btnRubros",
         btnZonas : "btnZonas",
@@ -15,7 +16,9 @@ class PerfilTrabajadorVista {
         txtApellido : "txtApellido",
         listaRubros : "listaRubros",
         listaZonas : "listaZonas",
-        listaContactos : "listaContactos"
+        listaContactos : "listaContactos",
+        divApiNom : "divApiNom",
+        divModApiNom : "divModApiNom"
     };
     datos = {
         id : null,
@@ -52,6 +55,10 @@ class PerfilTrabajadorVista {
 
     cargarFunciones(){
         let esto = this;
+        let btnModificarApiNom = document.getElementById(this.ids.btnModificarApiNom);
+        btnModificarApiNom.onclick = function() {
+            esto.btnModificarApiNomOnClick();
+        }
         let btnNombre = document.getElementById(this.ids.btnNombre);
         btnNombre.onclick = function() {
             alert("proximamente");
@@ -82,6 +89,13 @@ class PerfilTrabajadorVista {
             let trabajador = trabServ.respuesta;
             this.mostrarDatos(trabajador.nombre, trabajador.apellido);
         }
+    }
+
+    btnModificarApiNomOnClick(){
+        let divApiNom = document.getElementById(this.ids.divApiNom);
+        divApiNom.className = "displayFlex";
+        let divModApiNom = document.getElementById(this.ids.divModApiNom);
+        divModApiNom.className = "displayNone";
     }
 }
 

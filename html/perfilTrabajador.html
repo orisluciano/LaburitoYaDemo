@@ -5,10 +5,10 @@
         </div>
         <div class="displayBlock borderDivInput centrarContenido">
             <div class="borderDivInput marginBotton20">
-                <input type="text" placeholder="Ingrese su nombre" id="txtNombre" class="width100 inputText">
+                <input type="text" placeholder="Ingrese su nombre" id="txtNombre" class="width100 inputText" disabled>
             </div>
             <div class="borderDivInput marginBotton20">
-                <input type="text" placeholder="Ingrese su apellido" id="txtApellido" class="width100 inputText">
+                <input type="text" placeholder="Ingrese su apellido" id="txtApellido" class="width100 inputText" disabled>
             </div>
             <div>
                 <button class="btnForm displayFlex btnCentrado paddingLeft5" id="btnNombre">
@@ -17,9 +17,12 @@
                     </svg>
                 </button>
             </div>
-            <div class="displayFlex">
-                <button class="btnRelleno cabecera" id="btnEditar">Editar</button>
-                <button class="btnRelleno cabecera" id="btnCancelar">Cancelar</button>
+            <div class="displayNone" id="divApiNom">
+                <button class="btnRelleno cabecera" id="btnEditarApiNom">Editar</button>
+                <button class="btnRelleno cabecera" id="btnCancelarApiNom">Cancelar</button>
+            </div>
+            <div id="divModApiNom">
+                <button class="btnRelleno cabecera" id="btnModificarApiNom">Modificar</button>
             </div>
         </div>
         <div class="displayFlex paddindTop15 centrarContenido">

@@ -181,6 +181,10 @@ svg {
     display: block;
 }
 
+.displayNone {
+    display: none;
+}
+
 .positionFixed {
     position: fixed;
 }
