@@ -5,6 +5,8 @@ import TrabajadorUsuarioServicio from "../aplicacion/servicios/TrabajadorUsuario
 class PerfilTrabajadorVista {
     dir = "./html/perfilTrabajador.html";
     ids = {
+        btnEditar : "btnEditar",
+        btnCancelar : "btnCancelar",
         btnNombre : "btnNombre",
         btnRubros : "btnRubros",
         btnZonas : "btnZonas",
