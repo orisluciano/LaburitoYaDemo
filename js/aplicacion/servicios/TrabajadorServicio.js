@@ -18,8 +18,9 @@ class TrabajadorServicio {
         return json;
     }
 
-    nodificarTrabajador(trabajador){
-        alert("No Implementado");
+    modificarTrabajador(trabajador){
+        alert("Modificar");
+        console.log(trabajador);
     }
 
     eliminarTrabajador(id){

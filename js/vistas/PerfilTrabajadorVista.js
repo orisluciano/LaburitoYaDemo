@@ -92,10 +92,16 @@ class PerfilTrabajadorVista {
             let mensaje = "Hubo un error al cargar los datos del trabajador";
             this.mostrarDatos(mensaje, mensaje);
         } else {
-            let trabajadorUser = resServ.respuesta.resultados[0];
-            let trabServ = await this.trabajadorService.buscarPorId(trabajadorUser.trabajadorId);
-            let trabajador = trabServ.respuesta;
-            this.mostrarDatos(trabajador.nombre, trabajador.apellido);
+            if (resServ.respuesta.resultados.length > 0) {
+                let trabajadorUser = resServ.respuesta.resultados[0];
+                let trabServ = await this.trabajadorService.buscarPorId(trabajadorUser.trabajadorId);
+                let trabajador = trabServ.respuesta;
+                this.datos.id = trabajadorUser.trabajadorId;
+                this.mostrarDatos(trabajador.nombre, trabajador.apellido);   
+            } else {
+                let btnModificarApiNom = document.getElementById(this.ids.btnModificarApiNom);
+                btnModificarApiNom.innerHTML = "Crear trabajador";
+            }
         }
     }
 
@@ -115,7 +121,11 @@ class PerfilTrabajadorVista {
         let nombre = txtNombre.value;
         let txtApellido = document.getElementById(this.ids.txtApellido);
         let apellido = txtApellido.value;
-        alert(nombre + apellido);
+        if (this.datos.id === null) {
+            this.trabajadorService.nuevoTrabajador(this.datos);
+        } else {
+            this.trabajadorService.modificarTrabajador(this.datos);
+        }
     }
 
     btnCancelarrApiNomOnClick(){
