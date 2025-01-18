@@ -59,6 +59,14 @@ class PerfilTrabajadorVista {
         btnModificarApiNom.onclick = function() {
             esto.btnModificarApiNomOnClick();
         }
+        let btnEditarApiNom = document.getElementById(this.ids.btnEditarApiNom);
+        btnEditarApiNom.onclick = function() {
+            esto.btnEditarApiNomOnClick();
+        }
+        let btnCancelarApiNom = document.getElementById(this.ids.btnCancelarApiNom);
+        btnCancelarApiNom.onclick = function() {
+            esto.btnCancelarrApiNomOnClick();
+        }
         let btnNombre = document.getElementById(this.ids.btnNombre);
         btnNombre.onclick = function() {
             alert("proximamente");
@@ -96,6 +104,29 @@ class PerfilTrabajadorVista {
         divApiNom.className = "displayFlex";
         let divModApiNom = document.getElementById(this.ids.divModApiNom);
         divModApiNom.className = "displayNone";
+        let txtNombre = document.getElementById(this.ids.txtNombre);
+        txtNombre.disabled = false;
+        let txtApellido = document.getElementById(this.ids.txtApellido);
+        txtApellido.disabled = false;
+    }
+
+    btnEditarApiNomOnClick(){
+        let txtNombre = document.getElementById(this.ids.txtNombre);
+        let nombre = txtNombre.value;
+        let txtApellido = document.getElementById(this.ids.txtApellido);
+        let apellido = txtApellido.value;
+        alert(nombre + apellido);
+    }
+
+    btnCancelarrApiNomOnClick(){
+        let divApiNom = document.getElementById(this.ids.divApiNom);
+        divApiNom.className = "displayNone";
+        let divModApiNom = document.getElementById(this.ids.divModApiNom);
+        divModApiNom.className = "";
+        let txtNombre = document.getElementById(this.ids.txtNombre);
+        txtNombre.disabled = true;
+        let txtApellido = document.getElementById(this.ids.txtApellido);
+        txtApellido.disabled = true;
     }
 }
 
