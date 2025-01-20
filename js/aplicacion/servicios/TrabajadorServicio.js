@@ -3,7 +3,7 @@ import TokenServicio from "../servicios/TokenServicio.js";
 
 class TrabajadorServicio {
     //dir = "./recursos/datos/datos.json";
-    dir = "http://localhost/BackendLaburitoYa/api/trabajador/";
+    dir = "http://localhost/BackendLaburitoYa/api/trabajador";
     peticiones = new PeticionesHttp();
     tokenService = new TokenServicio();
 
@@ -13,7 +13,7 @@ class TrabajadorServicio {
 
     async nuevoTrabajador(trabajador) {
         let dir = this.dir;
-        let base = await this.peticiones.peticionesVarias(dir, "POST", trabajador, this.tokenService.BearerToken());
+        let base = await this.peticiones.post(dir, trabajador, this.tokenService.BearerToken());
         let json = await base;
         return json;
     }
@@ -35,7 +35,7 @@ class TrabajadorServicio {
     }
 
     async buscarPorId(id){
-        let dir = this.dir + id;
+        let dir = this.dir + "/" + id;
         let base = await this.peticiones.peticionGet(dir, "GET");
         let json = await base;
         return json;

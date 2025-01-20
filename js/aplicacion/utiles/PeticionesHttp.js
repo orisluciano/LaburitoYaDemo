@@ -39,6 +39,25 @@ class PeticionesHttp {
         return this.respuesta;
     }
 
+    async post(dir, datos, token) {
+        try {
+            let res = await fetch(dir,{
+                method : "POST",
+                body : JSON.stringify(datos),
+                headers : new Headers({
+                    'Accept' : 'application/json',
+                    'Authorization' : token
+                })
+            });
+            let json = await res.json();
+            console.log(json);
+            this.respuesta.resultado = json;
+        } catch (error) {
+            this.respuesta.errores.push(error);
+        }
+        return this.respuesta;
+    }
+
     async getWithToken(dir, token){
         try {
             let res = await fetch(dir,{

@@ -49,7 +49,7 @@ class PerfilTrabajadorVista {
     mostrarDatos(nombre, apellido){
         let txtNombre = document.getElementById(this.ids.txtNombre);
         txtNombre.value = nombre;
-        let txtApellido = document.getElementById(this.ids);
+        let txtApellido = document.getElementById(this.ids.txtApellido);
         txtApellido.value = apellido;
     }
 
@@ -122,6 +122,9 @@ class PerfilTrabajadorVista {
         let txtApellido = document.getElementById(this.ids.txtApellido);
         let apellido = txtApellido.value;
         if (this.datos.id === null) {
+            this.datos.apellido = apellido;
+            this.datos.nombre = nombre;
+            console.log(this.datos);console.log(JSON.stringify(this.datos));
             this.trabajadorService.nuevoTrabajador(this.datos);
         } else {
             this.trabajadorService.modificarTrabajador(this.datos);
