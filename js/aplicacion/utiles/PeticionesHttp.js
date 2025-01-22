@@ -1,6 +1,8 @@
 class PeticionesHttp {
     respuesta = {
-        errores : []
+        errores : [],
+        mensajes : [],
+        resultado : null
     }
     constructor() {
         
@@ -32,7 +34,7 @@ class PeticionesHttp {
             });
             let json = await res.json();
             console.log(json);
-            this.respuesta.resultado = json;
+            this.respuesta = json;
         } catch (error) {
             this.respuesta.errores.push(error);
         }

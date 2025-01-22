@@ -116,18 +116,28 @@ class PerfilTrabajadorVista {
         txtApellido.disabled = false;
     }
 
-    btnEditarApiNomOnClick(){
+    async btnEditarApiNomOnClick(){
         let txtNombre = document.getElementById(this.ids.txtNombre);
         let nombre = txtNombre.value;
         let txtApellido = document.getElementById(this.ids.txtApellido);
         let apellido = txtApellido.value;
+        this.datos.apellido = apellido;
+        this.datos.nombre = nombre;
+        let res;
         if (this.datos.id === null) {
-            this.datos.apellido = apellido;
-            this.datos.nombre = nombre;
-            console.log(this.datos);console.log(JSON.stringify(this.datos));
-            this.trabajadorService.nuevoTrabajador(this.datos);
+            res = await this.trabajadorService.nuevoTrabajador(this.datos);
         } else {
-            this.trabajadorService.modificarTrabajador(this.datos);
+            res = await this.trabajadorService.modificarTrabajador(this.datos);
+        }
+        if (res.errores.length > 0) {
+            res.errores.forEach(e => {
+                alert(e);
+            });
+        } else {
+            res.mensajes.forEach(e => {
+                alert(e);
+            });
+            this.btnCancelarrApiNomOnClick();
         }
     }
 

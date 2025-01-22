@@ -18,9 +18,12 @@ class TrabajadorServicio {
         return json;
     }
 
-    modificarTrabajador(trabajador){
-        alert("Modificar");
-        console.log(trabajador);
+    async modificarTrabajador(trabajador){
+        let dir = this.dir;
+        let base = await this.peticiones.peticionesVarias(dir, "PUT", trabajador, this.tokenService.BearerToken());
+        let json = await base;
+        console.log(json);console.log(json.resultado);
+        return json;
     }
 
     eliminarTrabajador(id){
@@ -28,7 +31,7 @@ class TrabajadorServicio {
     }
 
     async Buscar(desde, cantidad){
-        let dir = this.dir + desde + "/" + cantidad;
+        let dir = this.dir + "/" + desde + "/" + cantidad;
         let base = await this.peticiones.peticionGet(dir, "GET");
         let json = await base;
         return json;
