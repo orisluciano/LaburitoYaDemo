@@ -18,7 +18,12 @@ class PerfilTrabajadorVista {
         listaZonas : "listaZonas",
         listaContactos : "listaContactos",
         divApiNom : "divApiNom",
-        divModApiNom : "divModApiNom"
+        divModApiNom : "divModApiNom",
+        divRubros : "divRubros",
+        divModRubros : "divModRubros",
+        btnModificarRubros : "btnModificarRubros",
+        btnEditarRubros : "btnEditarRubros",
+        btnCancelarRubros : "btnCancelarRubros"
     };
     datos = {
         id : null,
@@ -66,6 +71,18 @@ class PerfilTrabajadorVista {
         let btnCancelarApiNom = document.getElementById(this.ids.btnCancelarApiNom);
         btnCancelarApiNom.onclick = function() {
             esto.btnCancelarrApiNomOnClick();
+        }
+        let btnModificarRubros = document.getElementById(this.ids.btnModificarRubros);
+        btnModificarRubros.onclick = function() {
+            esto.btnModificarRubroOnClick();
+        }
+        let btnEditarRubros = document.getElementById(this.ids.btnEditarRubros);
+        btnEditarRubros.onclick = function() {
+            esto.btnEditarRubroOnClick();
+        }
+        let btnCancelarRubroClick = document.getElementById(this.ids.btnCancelarRubros);
+        btnCancelarRubroClick.onclick = function() {
+            esto.btnCancelarRubroClick();
         }
         let btnNombre = document.getElementById(this.ids.btnNombre);
         btnNombre.onclick = function() {
@@ -150,6 +167,24 @@ class PerfilTrabajadorVista {
         txtNombre.disabled = true;
         let txtApellido = document.getElementById(this.ids.txtApellido);
         txtApellido.disabled = true;
+    }
+
+    btnModificarRubroOnClick(){
+        let divRubro = document.getElementById(this.ids.divRubros);
+        divRubro.className = "displayFlex";
+        let divModRubros = document.getElementById(this.ids.divModRubros);
+        divModRubros.className = "displayNone";
+    }
+
+    async btnEditarRubroOnClick(){
+        
+    }
+
+    btnCancelarRubroClick(){
+        let divRubro = document.getElementById(this.ids.divRubros);
+        divRubro.className = "displayNone";
+        let divModRubros = document.getElementById(this.ids.divModRubros);
+        divModRubros.className = "";
     }
 }
 
