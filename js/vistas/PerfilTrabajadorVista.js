@@ -1,4 +1,5 @@
 import TokenServicio from "../aplicacion/servicios/TokenServicio.js";
+import TrabajadorRubroServicio from "../aplicacion/servicios/TrabajadorRubroServicio.js";
 import TrabajadorServicio from "../aplicacion/servicios/TrabajadorServicio.js";
 import TrabajadorUsuarioServicio from "../aplicacion/servicios/TrabajadorUsuarioServicio.js";
 
@@ -32,6 +33,7 @@ class PerfilTrabajadorVista {
     };
     trabajadorService = new TrabajadorServicio();
     trabajadorUsuarioService = new TrabajadorUsuarioServicio();
+    trabajadorRubroService = new TrabajadorRubroServicio();
     tokenService = new TokenServicio();
 
     constructor() {
@@ -114,11 +116,41 @@ class PerfilTrabajadorVista {
                 let trabServ = await this.trabajadorService.buscarPorId(trabajadorUser.trabajadorId);
                 let trabajador = trabServ.respuesta;
                 this.datos.id = trabajadorUser.trabajadorId;
-                this.mostrarDatos(trabajador.nombre, trabajador.apellido);   
+                this.mostrarDatos(trabajador.nombre, trabajador.apellido);
+                this.cargarRubros();   
             } else {
                 let btnModificarApiNom = document.getElementById(this.ids.btnModificarApiNom);
                 btnModificarApiNom.innerHTML = "Crear trabajador";
             }
+        }
+    }
+
+    async cargarRubros(){
+        if (this.datos.id != null) {
+            let base = await this.trabajadorRubroService.BuscarRubrosPorTrabajador(this.datos.id);
+            this.mostrarRubros(base.respuesta.resultados);
+        }
+    }
+
+    mostrarRubros(rubros){
+        let listaRubros = document.getElementById(this.ids.listaRubros);
+        listaRubros.innerHTML = "";
+        if (this.datos.id != null) {
+            if (rubros.length > 0) {
+                rubros.forEach(e => {
+                    let r = document.createElement("li");
+                    r.innerHTML = e.descripcion;
+                    listaRubros.appendChild(r);
+                });   
+            } else {
+                let r = document.createElement("li");
+                    r.innerHTML = "No hay elementos para mostrar";
+                    listaRubros.appendChild(r);
+            }
+        } else {
+            let r = document.createElement("li");
+            r.innerHTML = "Primero llene sus datos de trabajador";
+            listaRubros.appendChild(r);
         }
     }
 
