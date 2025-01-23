@@ -35,6 +35,8 @@ class PerfilTrabajadorVista {
     trabajadorUsuarioService = new TrabajadorUsuarioServicio();
     trabajadorRubroService = new TrabajadorRubroServicio();
     tokenService = new TokenServicio();
+    listaBtnRubros = [];
+    listaBtnContactos = [];
 
     constructor() {
     }
@@ -133,6 +135,8 @@ class PerfilTrabajadorVista {
     }
 
     mostrarRubros(rubros){
+        let esto = this;
+        let lista = [];
         let listaRubros = document.getElementById(this.ids.listaRubros);
         listaRubros.innerHTML = "";
         if (this.datos.id != null) {
@@ -140,8 +144,20 @@ class PerfilTrabajadorVista {
                 rubros.forEach(e => {
                     let r = document.createElement("li");
                     r.innerHTML = e.descripcion;
+                    r.className = "displayFlex";
                     listaRubros.appendChild(r);
-                });   
+                    let btn = document.createElement("button");
+                    btn.innerHTML = "Eliminar";
+                    btn.className = "btnRelleno cabecera";
+                    btn.id = "btnEliminarRubro" + e.id;
+                    lista.push(btn.id);
+                    btn.style.display = "none";
+                    btn.onclick = function() {
+                        esto.btnEliminarRubro(e.id);
+                    }
+                    r.appendChild(btn);
+                });
+                this.listaBtnRubros = lista;
             } else {
                 let r = document.createElement("li");
                     r.innerHTML = "No hay elementos para mostrar";
@@ -153,6 +169,10 @@ class PerfilTrabajadorVista {
             listaRubros.appendChild(r);
         }
     }
+
+    cargarContactos(){}
+
+    mostrarContactos(){}
 
     btnModificarApiNomOnClick(){
         let divApiNom = document.getElementById(this.ids.divApiNom);
@@ -206,10 +226,22 @@ class PerfilTrabajadorVista {
         divRubro.className = "displayFlex";
         let divModRubros = document.getElementById(this.ids.divModRubros);
         divModRubros.className = "displayNone";
+        this.listaBtnRubros.forEach(e => {
+            let btn = document.getElementById(e);
+            btn.style.display = "";
+        });
     }
 
     async btnEditarRubroOnClick(){
         
+    }
+
+    async btnEliminarRubro(id){
+        let mensaje = "Quiere eliminar este elemento?";
+        if (confirm(mensaje)) {
+            let base = await this.trabajadorRubroService.EliminarTrabajadorRubro(id);
+            console.log(base);   
+        }
     }
 
     btnCancelarRubroClick(){
@@ -217,6 +249,10 @@ class PerfilTrabajadorVista {
         divRubro.className = "displayNone";
         let divModRubros = document.getElementById(this.ids.divModRubros);
         divModRubros.className = "";
+        this.listaBtnRubros.forEach(e => {
+            let btn = document.getElementById(e);
+            btn.style.display = "none";
+        });
     }
 }
 
