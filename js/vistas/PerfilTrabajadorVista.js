@@ -240,7 +240,13 @@ class PerfilTrabajadorVista {
         let mensaje = "Quiere eliminar este elemento?";
         if (confirm(mensaje)) {
             let base = await this.trabajadorRubroService.EliminarTrabajadorRubro(id);
-            console.log(base);   
+            if (base.mensajes.length > 0) {
+                alert(base.mensajes[0]);
+                this.cargarRubros();
+                this.btnCancelarRubroClick();
+            } else {
+                
+            }   
         }
     }
 
