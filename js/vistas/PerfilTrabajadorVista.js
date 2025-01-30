@@ -1,5 +1,6 @@
 import RubroServicio from "../aplicacion/servicios/RubroServicio.js";
 import TokenServicio from "../aplicacion/servicios/TokenServicio.js";
+import TrabajadorContactoServicio from "../aplicacion/servicios/TrabajadorContactoServicio.js";
 import TrabajadorRubroServicio from "../aplicacion/servicios/TrabajadorRubroServicio.js";
 import TrabajadorServicio from "../aplicacion/servicios/TrabajadorServicio.js";
 import TrabajadorUsuarioServicio from "../aplicacion/servicios/TrabajadorUsuarioServicio.js";
@@ -18,7 +19,6 @@ class PerfilTrabajadorVista {
         txtApellido : "txtApellido",
         listaRubros : "listaRubros",
         listaZonas : "listaZonas",
-        listaContactos : "listaContactos",
         divApiNom : "divApiNom",
         divModApiNom : "divModApiNom",
         divRubros : "divRubros",
@@ -27,7 +27,15 @@ class PerfilTrabajadorVista {
         btnEditarRubros : "btnEditarRubros",
         btnCancelarRubros : "btnCancelarRubros",
         slcRubros : "slcRubros",
-        divInputRubro : "divInputRubro"
+        divInputRubro : "divInputRubro",
+        listaContactos : "listaContactos",
+        slcContacto : "slcContacto",
+        btnEditarCon : "btnEditarCon",
+        btnCancelarCon : "btnCancelarCon",
+        btnModificarCon : "btnModificarCon",
+        divModCon : "divModCon",
+        divContacto : "divContacto",
+        divInputContacto : "divInputContacto"
     };
     datos = {
         id : null,
@@ -38,6 +46,7 @@ class PerfilTrabajadorVista {
     trabajadorService = new TrabajadorServicio();
     trabajadorUsuarioService = new TrabajadorUsuarioServicio();
     trabajadorRubroService = new TrabajadorRubroServicio();
+    trabajadorContactoService = new TrabajadorContactoServicio();
     tokenService = new TokenServicio();
     listaBtnRubros = [];
     listaBtnContactos = [];
@@ -92,21 +101,17 @@ class PerfilTrabajadorVista {
         btnCancelarRubroClick.onclick = function() {
             esto.btnCancelarRubroClick();
         }
-        let btnNombre = document.getElementById(this.ids.btnNombre);
-        btnNombre.onclick = function() {
-            alert("proximamente");
+        let btnModificarCon = document.getElementById(this.ids.btnModificarCon);
+        btnModificarCon.onclick = function() {
+            esto.btnModificarConOnClick();
         }
-        let btnRubros = document.getElementById(this.ids.btnRubros);
-        btnRubros.onclick = function() {
-            alert("proximamente");
+        let btnEditarCon = document.getElementById(this.ids.btnEditarCon);
+        btnEditarCon.onclick = function() {
+            esto.btnEditarConOnClick();
         }
-        let btnZonas = document.getElementById(this.ids.btnZonas);
-        btnZonas.onclick = function() {
-            alert("proximamente");
-        }
-        let btnContactos = document.getElementById(this.ids.btnContactos);
-        btnContactos.onclick = function() {
-            alert("proximamanete");
+        let btnCancelarCon = document.getElementById(this.ids.btnCancelarCon);
+        btnCancelarCon.onclick = function() {
+            esto.btnCancelarConClick();
         }
     }
 
@@ -123,7 +128,8 @@ class PerfilTrabajadorVista {
                 let trabajador = trabServ.respuesta;
                 this.datos.id = trabajadorUser.trabajadorId;
                 this.mostrarDatos(trabajador.nombre, trabajador.apellido);
-                this.cargarRubros();   
+                this.cargarRubros();
+                this.cargarContactos();
             } else {
                 let btnModificarApiNom = document.getElementById(this.ids.btnModificarApiNom);
                 btnModificarApiNom.innerHTML = "Crear trabajador";
@@ -175,9 +181,49 @@ class PerfilTrabajadorVista {
         }
     }
 
-    cargarContactos(){}
+    async cargarContactos(){
+        if (this.datos.id != null) {
+            let base = await this.trabajadorContactoService.BuscarContactosPorTrabajador(this.datos.id);
+            this.datos.rubros = base.respuesta.resultados;
+            this.mostrarContactos(base.respuesta.resultados);
+        }
+    }
 
-    mostrarContactos(){}
+    mostrarContactos(contactos){
+        let esto = this;
+        let lista = [];
+        let listaContactos = document.getElementById(this.ids.listaContactos);
+        listaContactos.innerHTML = "";
+        if (this.datos.id != null) {
+            if (contactos.length > 0) {
+                contactos.forEach(e => {
+                    let r = document.createElement("li");
+                    r.innerHTML = e.descripcion;
+                    r.className = "displayFlex";
+                    listaContactos.appendChild(r);
+                    let btn = document.createElement("button");
+                    btn.innerHTML = "Eliminar";
+                    btn.className = "btnRelleno cabecera";
+                    btn.id = "btnEliminarCon" + e.id;
+                    lista.push(btn.id);
+                    btn.style.display = "none";
+                    btn.onclick = function() {
+                        esto.btnEliminarConOnclick(e.id);
+                    }
+                    r.appendChild(btn);
+                });
+                this.listaBtnContactos = lista;
+            } else {
+                let r = document.createElement("li");
+                    r.innerHTML = "No hay elementos para mostrar";
+                    listaContactos.appendChild(r);
+            }
+        } else {
+            let r = document.createElement("li");
+            r.innerHTML = "Primero llene sus datos de trabajador";
+            listaContactos.appendChild(r);
+        }
+    }
 
     btnModificarApiNomOnClick(){
         let divApiNom = document.getElementById(this.ids.divApiNom);
@@ -252,7 +298,7 @@ class PerfilTrabajadorVista {
             this.cargarRubros();
             this.btnCancelarRubroClick();
         } else {
-            
+            alert("Hubo un error");
         }   
         
     }
@@ -266,7 +312,7 @@ class PerfilTrabajadorVista {
                 this.cargarRubros();
                 this.btnCancelarRubroClick();
             } else {
-                
+                alert("Hubo un error");
             }   
         }
     }
@@ -296,7 +342,6 @@ class PerfilTrabajadorVista {
         } else {
             let opcionesCargar = base.respuesta.resultados;
             opcionesCargar.forEach(e => {
-                let aux = [];
                 this.datos.rubros.forEach(r => {
                     if (r.rubroId === e.id) {
                         opcionesCargar = opcionesCargar.filter(f => r.rubroId !== f.id);
@@ -310,6 +355,64 @@ class PerfilTrabajadorVista {
                 select.appendChild(op);
             });
         }
+    }
+
+    btnModificarConOnClick(){
+        let divCon = document.getElementById(this.ids.divContacto);
+        divCon.className = "displayFlex";
+        let divModCon = document.getElementById(this.ids.divModCon);
+        divModCon.className = "displayNone";
+        this.listaBtnContactos.forEach(e => {
+            let btn = document.getElementById(e);
+            btn.style.display = "";
+        });
+        let divInputCon = document.getElementById(this.ids.divInputContacto);
+        divInputCon.className = "";
+        //this.cargarOpcionesRubros();
+    }
+
+    async btnEditarConOnClick(){
+        let select = document.getElementById(this.ids.slcRubros);
+        let tc = {
+            rubroId : select.value,
+            trabajadorId : this.datos.id
+        }
+        let base = await this.trabajadorContactoService.NuevoTrabadorContacto(tc);
+        if (base.mensajes.length > 0) {
+            alert(base.mensajes[0]);
+            this.cargarContactos
+            this.btnCancelarConClick();
+        } else {
+            alert("Hubo un error");
+        }   
+        
+    }
+
+    async btnEliminarConOnclick(id){
+        let mensaje = "Quiere eliminar este elemento?";
+        if (confirm(mensaje)) {
+            let base = await this.trabajadorContactoService.EliminarTrabajadorContacto(id);
+            if (base.mensajes.length > 0) {
+                alert(base.mensajes[0]);
+                this.cargarContactos()
+                this.btnCancelarConClick();
+            } else {
+                alert("Hubo un error");   
+            }
+        }
+    }
+
+    btnCancelarConClick(){
+        let divCon = document.getElementById(this.ids.divContacto);
+        divCon.className = "displayNone";
+        let divModCon = document.getElementById(this.ids.divModCon);
+        divModCon.className = "";
+        this.listaBtnContactos.forEach(e => {
+            let btn = document.getElementById(e);
+            btn.style.display = "none";
+        });
+        let divInputCon = document.getElementById(this.ids.divInputContacto);
+        divInputCon.className = "displayNone";
     }
 }
 

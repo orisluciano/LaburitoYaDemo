@@ -10,13 +10,6 @@
             <div class="borderDivInput marginBotton20">
                 <input type="text" placeholder="Ingrese su apellido" id="txtApellido" class="width100 inputText" disabled>
             </div>
-            <div>
-                <button class="btnForm displayFlex btnCentrado paddingLeft5" id="btnNombre">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="m3.99 16.854-1.314 3.504a.75.75 0 0 0 .966.965l3.503-1.314a3 3 0 0 0 1.068-.687L18.36 9.175s-.354-1.061-1.414-2.122c-1.06-1.06-2.122-1.414-2.122-1.414L4.677 15.786a3 3 0 0 0-.687 1.068zm12.249-12.63 1.383-1.383c.248-.248.579-.406.925-.348.487.08 1.232.322 1.934 1.025.703.703.945 1.447 1.025 1.934.058.346-.1.677-.348.925L19.774 7.76s-.353-1.06-1.414-2.12c-1.06-1.062-2.121-1.415-2.121-1.415z"/>
-                    </svg>
-                </button>
-            </div>
             <div class="displayNone" id="divApiNom">
                 <button class="btnRelleno cabecera" id="btnEditarApiNom">Editar</button>
                 <button class="btnRelleno cabecera" id="btnCancelarApiNom">Cancelar</button>
@@ -28,11 +21,6 @@
         <div class="displayBlock paddindTop15 centrarContenido">
             <div>
                 <p>Rubros</p>
-                <button class="btnForm displayFlex btnCentrado paddingLeft5" id="btnRubros">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M13 3C13 2.44772 12.5523 2 12 2C11.4477 2 11 2.44772 11 3V11H3C2.44772 11 2 11.4477 2 12C2 12.5523 2.44772 13 3 13H11V21C11 21.5523 11.4477 22 12 22C12.5523 22 13 21.5523 13 21V13H21C21.5523 13 22 12.5523 22 12C22 11.4477 21.5523 11 21 11H13V3Z"/>
-                    </svg>
-                </button>
             </div>
             <div class="borderDivInput">
                 <ul id="listaRubros">
@@ -62,18 +50,24 @@
                 <li>Remoto</li>
             </ul>
         </div>
-        <div class="displayFlex paddindTop15 centrarContenido">
-            <p>Contactos</p>
-            <button class="btnForm displayFlex btnCentrado paddingLeft5" id="btnContactos">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M13 3C13 2.44772 12.5523 2 12 2C11.4477 2 11 2.44772 11 3V11H3C2.44772 11 2 11.4477 2 12C2 12.5523 2.44772 13 3 13H11V21C11 21.5523 11.4477 22 12 22C12.5523 22 13 21.5523 13 21V13H21C21.5523 13 22 12.5523 22 12C22 11.4477 21.5523 11 21 11H13V3Z"/>
-                    </svg>
-            </button>
-        </div>
-        <div class="borderDivInput">
-            <ul id="listaContactos">
-                <li>Linkedin</li>
-            </ul>
+        <div class="displayBlock paddindTop15 centrarContenido">
+            <div>
+                <p>Contactos</p>
+            </div>
+            <div class="borderDivInput">
+                <ul id="listaContactos">
+                </ul>
+            </div>
+            <div class="displayNone" id="divInputContacto">
+                <select id="slcContacto"></select>
+            </div>
+            <div class="displayNone" id="divContacto">
+                <button class="btnRelleno cabecera" id="btnEditarCon">Editar</button>
+                <button class="btnRelleno cabecera" id="btnCancelarCon">Cancelar</button>
+            </div>
+            <div id="divModCon">
+                <button class="btnRelleno cabecera" id="btnModificarCon">Modificar</button>
+            </div>
         </div>
     </div>
 </div>
