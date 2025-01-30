@@ -1,7 +1,7 @@
-import PeticionesHttp from "../utiles/PeticionesHttp";
+import PeticionesHttp from "../utiles/PeticionesHttp.js";
 
 class RubroServicio {
-    dir = "http://localhost/BackendLaburitoYa/api/trabajador/";
+    dir = "http://localhost/BackendLaburitoYa/api/rubro/";
     peticiones = new PeticionesHttp();
 
     constructor(parameters) {
@@ -28,7 +28,7 @@ class RubroServicio {
     }
 
     async BuscarPorId(id){
-        let dir = this.dir + id;
+        let dir = "http://localhost/BackendLaburitoYa/api/trabajador/" + id;
         let base = await this.peticiones.peticionGet(dir, "GET");
         let json = await base;
         return json;

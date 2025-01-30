@@ -1,3 +1,4 @@
+import RubroServicio from "../aplicacion/servicios/RubroServicio.js";
 import TokenServicio from "../aplicacion/servicios/TokenServicio.js";
 import TrabajadorRubroServicio from "../aplicacion/servicios/TrabajadorRubroServicio.js";
 import TrabajadorServicio from "../aplicacion/servicios/TrabajadorServicio.js";
@@ -24,12 +25,15 @@ class PerfilTrabajadorVista {
         divModRubros : "divModRubros",
         btnModificarRubros : "btnModificarRubros",
         btnEditarRubros : "btnEditarRubros",
-        btnCancelarRubros : "btnCancelarRubros"
+        btnCancelarRubros : "btnCancelarRubros",
+        slcRubros : "slcRubros",
+        divInputRubro : "divInputRubro"
     };
     datos = {
         id : null,
         nombre : "",
-        apellido : ""
+        apellido : "",
+        rubros : null
     };
     trabajadorService = new TrabajadorServicio();
     trabajadorUsuarioService = new TrabajadorUsuarioServicio();
@@ -130,6 +134,7 @@ class PerfilTrabajadorVista {
     async cargarRubros(){
         if (this.datos.id != null) {
             let base = await this.trabajadorRubroService.BuscarRubrosPorTrabajador(this.datos.id);
+            this.datos.rubros = base.respuesta.resultados;
             this.mostrarRubros(base.respuesta.resultados);
         }
     }
@@ -230,9 +235,25 @@ class PerfilTrabajadorVista {
             let btn = document.getElementById(e);
             btn.style.display = "";
         });
+        let divInputRubro = document.getElementById(this.ids.divInputRubro);
+        divInputRubro.className = "";
+        this.cargarOpcionesRubros();
     }
 
     async btnEditarRubroOnClick(){
+        let select = document.getElementById(this.ids.slcRubros);
+        let tr = {
+            rubroId : select.value,
+            trabajadorId : this.datos.id
+        }
+        let base = await this.trabajadorRubroService.NuevoTrabadorRubro(tr);
+        if (base.mensajes.length > 0) {
+            alert(base.mensajes[0]);
+            this.cargarRubros();
+            this.btnCancelarRubroClick();
+        } else {
+            
+        }   
         
     }
 
@@ -259,6 +280,36 @@ class PerfilTrabajadorVista {
             let btn = document.getElementById(e);
             btn.style.display = "none";
         });
+        let divInputRubro = document.getElementById(this.ids.divInputRubro);
+        divInputRubro.className = "displayNone";
+    }
+
+    async cargarOpcionesRubros(){
+        let select = document.getElementById(this.ids.slcRubros);
+        select.innerHTML = "";
+        let rubroServicio = new RubroServicio();
+        let base = await rubroServicio.Buscar(0,100);
+        if (base.errores > 0) {
+            let op = document.createElement("option");
+            op.innerHTML = "Hubo un error";
+            select.appendChild(op);
+        } else {
+            let opcionesCargar = base.respuesta.resultados;
+            opcionesCargar.forEach(e => {
+                let aux = [];
+                this.datos.rubros.forEach(r => {
+                    if (r.rubroId === e.id) {
+                        opcionesCargar = opcionesCargar.filter(f => r.rubroId !== f.id);
+                    }
+                });
+            });
+            opcionesCargar.forEach(e => {
+                let op = document.createElement("option");
+                op.innerHTML = e.descripcion;
+                op.value = e.id;
+                select.appendChild(op);
+            });
+        }
     }
 }
 

@@ -10,8 +10,10 @@ class TrabajadorRubroServicio {
         
     }
 
-    NuevoTrabadorRubro(tr) {
-        alert("No Implementado");
+    async NuevoTrabadorRubro(tr) {
+        let base = await this.peticiones.peticionesVarias(this.dir, "POST", tr, this.tokenServicio.BearerToken());
+        let json = await base;
+        return json;
     }
 
     ModificarTrabajadorRubro(tr){
