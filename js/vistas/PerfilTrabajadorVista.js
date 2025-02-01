@@ -30,6 +30,7 @@ class PerfilTrabajadorVista {
         divInputRubro : "divInputRubro",
         listaContactos : "listaContactos",
         slcContacto : "slcContacto",
+        txtContacto : "txtContacto",
         btnEditarCon : "btnEditarCon",
         btnCancelarCon : "btnCancelarCon",
         btnModificarCon : "btnModificarCon",
