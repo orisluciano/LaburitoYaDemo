@@ -1,4 +1,5 @@
 import RubroServicio from "../aplicacion/servicios/RubroServicio.js";
+import TipoContactoServicio from "../aplicacion/servicios/TipoContactoServicio.js";
 import TokenServicio from "../aplicacion/servicios/TokenServicio.js";
 import TrabajadorContactoServicio from "../aplicacion/servicios/TrabajadorContactoServicio.js";
 import TrabajadorRubroServicio from "../aplicacion/servicios/TrabajadorRubroServicio.js";
@@ -226,6 +227,22 @@ class PerfilTrabajadorVista {
         }
     }
 
+    async cargarTiposContactos(){
+        let tipoServ = new TipoContactoServicio();
+        let base = await tipoServ.Buscar(0,100);
+        let select = document.getElementById(this.ids.slcContacto);
+        if (base.errores.length === 0) {
+            let tipos = base.respuesta.resultados;
+            tipos.forEach(e => {
+                let option = document.createElement("option");
+                option.innerHTML = e.descripcion;
+                option.value = e.id;
+                select.appendChild(option);
+            }
+            );
+        }
+    }
+
     btnModificarApiNomOnClick(){
         let divApiNom = document.getElementById(this.ids.divApiNom);
         divApiNom.className = "displayFlex";
@@ -369,7 +386,7 @@ class PerfilTrabajadorVista {
         });
         let divInputCon = document.getElementById(this.ids.divInputContacto);
         divInputCon.className = "";
-        //this.cargarOpcionesRubros();
+        this.cargarTiposContactos();
     }
 
     async btnEditarConOnClick(){
