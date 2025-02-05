@@ -1,15 +1,19 @@
 import PeticionesHttp from "../utiles/PeticionesHttp.js";
+import TokenServicio from "./TokenServicio.js";
 
 class TrabajadorContactoServicio {
-    dir = "http://localhost/BackendLaburitoYa/api/trabajadorcontacto/";
+    dir = "http://localhost/BackendLaburitoYa/api/trabajadorcontacto";
     peticiones = new PeticionesHttp();
+    tokenService = new TokenServicio();
     
     constructor(parameters) {
         
     }
 
-    NuevoTrabadorContacto(tc) {
-        alert("No Implementado");
+    async NuevoTrabadorContacto(tc) {
+        let base = await this.peticiones.post(this.dir, tc, this.tokenService.BearerToken());
+        let json = await base;
+        return json;
     }
 
     ModificarTrabajadorContacto(tc){
@@ -21,7 +25,7 @@ class TrabajadorContactoServicio {
     }
 
     async Buscar(desde, cantidad){
-        let dir = this.dir + desde + "/" + cantidad;
+        let dir = this.dir  + "/" + desde + "/" + cantidad;
         let base = await this.peticiones.peticionGet(dir, "GET");
         let json = await base;
         return json;
@@ -32,7 +36,7 @@ class TrabajadorContactoServicio {
     }
 
     async BuscarContactosPorTrabajador(trabajadorId){
-        let dir = this.dir + "contactos/" + trabajadorId;
+        let dir = this.dir + "/contactos/" + trabajadorId;
         let base = await this.peticiones.peticionGet(dir, "GET");
         let json = await base;
         return json;

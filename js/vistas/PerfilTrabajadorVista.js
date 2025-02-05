@@ -43,7 +43,8 @@ class PerfilTrabajadorVista {
         id : null,
         nombre : "",
         apellido : "",
-        rubros : null
+        rubros : null,
+        contactos : null
     };
     trabajadorService = new TrabajadorServicio();
     trabajadorUsuarioService = new TrabajadorUsuarioServicio();
@@ -186,7 +187,7 @@ class PerfilTrabajadorVista {
     async cargarContactos(){
         if (this.datos.id != null) {
             let base = await this.trabajadorContactoService.BuscarContactosPorTrabajador(this.datos.id);
-            this.datos.rubros = base.respuesta.resultados;
+            this.datos.contactos = base.respuesta.resultados;
             this.mostrarContactos(base.respuesta.resultados);
         }
     }
@@ -231,6 +232,7 @@ class PerfilTrabajadorVista {
         let tipoServ = new TipoContactoServicio();
         let base = await tipoServ.Buscar(0,100);
         let select = document.getElementById(this.ids.slcContacto);
+        select.innerHTML = "";
         if (base.errores.length === 0) {
             let tipos = base.respuesta.resultados;
             tipos.forEach(e => {
@@ -241,6 +243,9 @@ class PerfilTrabajadorVista {
             }
             );
         }
+        let txtContacto = document.getElementById(this.ids.txtContacto);
+        txtContacto.innerHTML = "";
+        txtContacto.value = "";
     }
 
     btnModificarApiNomOnClick(){
@@ -390,15 +395,18 @@ class PerfilTrabajadorVista {
     }
 
     async btnEditarConOnClick(){
-        let select = document.getElementById(this.ids.slcRubros);
+        let select = document.getElementById(this.ids.slcContacto);
+        let txtContacto = document.getElementById(this.ids.txtContacto);
         let tc = {
-            rubroId : select.value,
-            trabajadorId : this.datos.id
+            tipoContactoId : select.value,
+            trabajadorId : this.datos.id,
+            descripcion : txtContacto.value
         }
         let base = await this.trabajadorContactoService.NuevoTrabadorContacto(tc);
-        if (base.mensajes.length > 0) {
-            alert(base.mensajes[0]);
-            this.cargarContactos
+        let res = base.resultado;
+        if (res.mensajes.length > 0) {
+            alert(res.mensajes[0]);
+            this.cargarContactos();
             this.btnCancelarConClick();
         } else {
             alert("Hubo un error");
