@@ -201,7 +201,7 @@ class PerfilTrabajadorVista {
             if (contactos.length > 0) {
                 contactos.forEach(e => {
                     let r = document.createElement("li");
-                    r.innerHTML = e.descripcion;
+                    r.innerHTML = e.descripcion + " - " + e.tipoContacto;
                     r.className = "displayFlex";
                     listaContactos.appendChild(r);
                     let btn = document.createElement("button");
