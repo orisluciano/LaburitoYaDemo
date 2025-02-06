@@ -20,8 +20,11 @@ class TrabajadorContactoServicio {
         alert("No Implementado");
     }
 
-    EliminarTrabajadorContacto(id){
-        alert("No Implementado");
+    async EliminarTrabajadorContacto(id){
+        let obj = { id : id}
+        let base = await this.peticiones.peticionesVarias(this.dir, "DELETE", obj, this.tokenService.BearerToken());
+        let json = await base;
+        return json;
     }
 
     async Buscar(desde, cantidad){
