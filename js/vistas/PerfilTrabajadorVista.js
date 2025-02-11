@@ -18,6 +18,7 @@ class PerfilTrabajadorVista {
         btnContactos : "btnContactos",
         txtNombre : "txtNombre",
         txtApellido : "txtApellido",
+        txtDecrip : "txtDecrip",
         listaRubros : "listaRubros",
         listaZonas : "listaZonas",
         divApiNom : "divApiNom",
@@ -257,6 +258,8 @@ class PerfilTrabajadorVista {
         txtNombre.disabled = false;
         let txtApellido = document.getElementById(this.ids.txtApellido);
         txtApellido.disabled = false;
+        let txtDecrip = document.getElementById(this.ids.txtDecrip);
+        txtDecrip.disabled = false;
     }
 
     async btnEditarApiNomOnClick(){
@@ -293,6 +296,8 @@ class PerfilTrabajadorVista {
         txtNombre.disabled = true;
         let txtApellido = document.getElementById(this.ids.txtApellido);
         txtApellido.disabled = true;
+        let txtDecrip = document.getElementById(this.ids.txtDecrip);
+        txtDecrip.disabled = true;
     }
 
     btnModificarRubroOnClick(){
