@@ -44,6 +44,7 @@ class PerfilTrabajadorVista {
         id : null,
         nombre : "",
         apellido : "",
+        descripcion : "",
         rubros : null,
         contactos : null
     };
@@ -72,11 +73,13 @@ class PerfilTrabajadorVista {
         this.cargarTrabajador();
     }
 
-    mostrarDatos(nombre, apellido){
+    mostrarDatos(nombre, apellido, descripcion){
         let txtNombre = document.getElementById(this.ids.txtNombre);
         txtNombre.value = nombre;
         let txtApellido = document.getElementById(this.ids.txtApellido);
         txtApellido.value = apellido;
+        let txtDecrip = document.getElementById(this.ids.txtDecrip);
+        txtDecrip.value = descripcion;
     }
 
     cargarFunciones(){
@@ -131,7 +134,7 @@ class PerfilTrabajadorVista {
                 let trabServ = await this.trabajadorService.buscarPorId(trabajadorUser.trabajadorId);
                 let trabajador = trabServ.respuesta;
                 this.datos.id = trabajadorUser.trabajadorId;
-                this.mostrarDatos(trabajador.nombre, trabajador.apellido);
+                this.mostrarDatos(trabajador.nombre, trabajador.apellido, trabajador.descripcion);
                 this.cargarRubros();
                 this.cargarContactos();
             } else {
@@ -267,8 +270,11 @@ class PerfilTrabajadorVista {
         let nombre = txtNombre.value;
         let txtApellido = document.getElementById(this.ids.txtApellido);
         let apellido = txtApellido.value;
+        let txtDecrip = document.getElementById(this.ids.txtDecrip);
+        let descripcion = txtDecrip.value;
         this.datos.apellido = apellido;
         this.datos.nombre = nombre;
+        this.datos.descripcion = descripcion;
         let res;
         if (this.datos.id === null) {
             res = await this.trabajadorService.nuevoTrabajador(this.datos);
