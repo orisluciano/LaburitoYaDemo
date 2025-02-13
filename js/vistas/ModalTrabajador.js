@@ -25,6 +25,7 @@ class ModalTrabajador {
         this.datos.id = datos.id;
         this.datos.nombre = datos.nombre;
         this.datos.apellido = datos.apellido;
+        this.datos.descripcion = datos.descripcion;
     }
 
     async cargarVista(){
@@ -38,6 +39,9 @@ class ModalTrabajador {
         let nombre = document.getElementById(this.ids.nombreTrabajador);
         nombre.innerHTML = "";
         nombre.innerHTML = this.datos.nombre + " " + this.datos.apellido;
+        let descripcion = document.getElementById(this.ids.descripTrabajador);
+        descripcion.innerHTML = "";
+        descripcion.innerHTML = this.datos.descripcion;
         await this.getRubrosByTrabajador();
         await this.getContactosByTrabajador();
         await this.getOpinionesByTrabajador();
