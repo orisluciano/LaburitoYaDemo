@@ -80,7 +80,12 @@ class ModalTrabajador {
             if (base.respuesta.resultados.length > 0) {
                 base.respuesta.resultados.forEach(e => {
                     let r = document.createElement("li");
-                    r.innerHTML = e.descripcion;
+                    r.innerHTML = e.tipoContacto + ": ";
+                    let link = document.createElement("a");
+                    link.innerHTML = e.descripcion;
+                    link.href = e.descripcion;
+                    link.target = "_blank";
+                    r.appendChild(link);
                     rubros.appendChild(r);
                 });   
             } else {
