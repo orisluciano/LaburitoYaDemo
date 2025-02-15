@@ -1,5 +1,6 @@
 import LoginServicio from "../aplicacion/servicios/LoginServicio.js";
 import BuscadorVista from "./BuscadorVista.js";
+import ConfigUsuarioVista from "./ConfigUsuarioVista.js";
 import InicioVista from "./InicioVista.js";
 import PerfilTrabajadorVista from "./PerfilTrabajadorVista.js";
 import SloganVista from "./SloganVista.js";
@@ -78,7 +79,8 @@ class MenuVista {
     }
 
     btnConfigUSerOnClick(){
-        alert("Proximamente");
+        let configs = new ConfigUsuarioVista();
+        configs.CargarVista();
     }
 
     btnSugerencias(){
