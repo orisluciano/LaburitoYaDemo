@@ -11,6 +11,8 @@ class ConfigUsuarioVista {
         btnCancelarNombre : "btnCancelarNombre",
         divContraseña : "divContraseña",
         btnPass : "btnPass",
+        divPass : "divPass",
+        txtActual : "txtActual",
         txtNuevo : "txtNuevo",
         txtNuevo2 : "txtNuevo2",
         divBtnPass : "divBtnPass",
@@ -47,7 +49,7 @@ class ConfigUsuarioVista {
         };
         let btnPass = document.getElementById(this.ids.btnPass);
         btnPass.onclick = function() {
-            alert("");
+            esto.btnPassOnClick();
         };
         let btnCambiarPass = document.getElementById(this.ids.btnCambiarPass);
         btnCambiarPass.onclick = function() {
@@ -90,7 +92,14 @@ class ConfigUsuarioVista {
     }
 
     btnPassOnClick(){
-        alert("");
+        let divPass = document.getElementById(this.ids.divPass);
+        divPass.className = "displayFLex";
+        let divContraseña = document.getElementById(this.ids.divContraseña);
+        divContraseña.className = "diplayNone";
+        let divBtnPass = document.getElementById(this.ids.divBtnPass);
+        divBtnPass.className = "displayFlex marginBotton20";
+        let btnPass = document.getElementById(this.ids.btnPass);
+        btnPass.className = "displayNone";
     }
 
     btnCambiarPassOnclick(){
