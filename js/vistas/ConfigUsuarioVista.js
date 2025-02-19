@@ -53,11 +53,11 @@ class ConfigUsuarioVista {
         };
         let btnCambiarPass = document.getElementById(this.ids.btnCambiarPass);
         btnCambiarPass.onclick = function() {
-            alert("");
+            esto.btnCambiarPassOnclick();
         };
         let btnCancelarPass = document.getElementById(this.ids.btnCancelarPass);
         btnCancelarPass.onclick = function() {
-            alert("");
+            esto.btnCancelarPassOnClick();
         };
     }
 
@@ -105,6 +105,12 @@ class ConfigUsuarioVista {
     }
 
     btnCancelarPassOnClick(){
+        let divContraseña = document.getElementById(this.ids.divContraseña);
+        divContraseña.className = "marginBotton20";
+        let divPass = document.getElementById(this.ids.divPass);
+        divPass.className = "displayNone";
+        let divBtnPass = document.getElementById(this.ids.divBtnPass);
+        divBtnPass.className = "displayNone";
     }
 }
 export default ConfigUsuarioVista;
