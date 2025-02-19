@@ -4,32 +4,32 @@
             <h3 class="margin0 padding5 cabecera">Configuraciones de usuario</h3>
         </div>
         <div class="borderDivInput marginBotton20">
-            <input type="text" placeholder="Usuario" id="txtUser" class="width100 inputText">
+            <input type="text" placeholder="Usuario" id="txtUser" class="width100 inputText" disabled>
         </div>
-        <div class="borderDivInput marginBotton20">
+        <div class="displayNone" id="divPassOriginal">
             <input type="text" placeholder="Ingrese su contraseña" id="txtPass" class="width100 inputText">
         </div>
-        <div class="marginBotton20">
-            <button class="btnRelleno cabecera">Cambiar nombre</button>
+        <div class="marginBotton20" id="divNombre">
+            <button class="btnRelleno cabecera" id="btnNombre">Cambiar nombre</button>
         </div>
-        <div class="displayFlex marginBotton20">
-            <button class="btnRelleno cabecera">Cambiar</button>
-            <button class="btnRelleno cabecera">Cancelar</button>
+        <div class="displayNone" id="divBtnUser">
+            <button class="btnRelleno cabecera" id="btnCambiarNombre">Cambiar</button>
+            <button class="btnRelleno cabecera" id="btnCancelarNombre">Cancelar</button>
         </div>
-        <div class="marginBotton20">
-            <button class="btnRelleno cabecera">Cambiar contraseña</button>
+        <div class="marginBotton20" id="divContraseña">
+            <button class="btnRelleno cabecera" id="btnPass">Cambiar contraseña</button>
         </div>
-        <div>
+        <div id="divPass" class="displayNone">
             <div class="borderDivInput marginBotton20">
                 <input type="text" placeholder="Ingrese su nueva contraseña" id="txtNuevo" class="width100 inputText">
             </div>
             <div class="borderDivInput marginBotton20">
                 <input type="text" placeholder="Ingrese de nuevo su nueva contraseña" id="txtNuevo2" class="width100 inputText">
             </div>
-            <div class="displayFlex marginBotton20">
-                <button class="btnRelleno cabecera">Cambiar</button>
-                <button class="btnRelleno cabecera">Cancelar</button>
-            </div>
+        </div>
+        <div class="displayNone" id="divBtnPass">
+            <button class="btnRelleno cabecera" id="btnCambiarPass">Cambiar</button>
+            <button class="btnRelleno cabecera" id="btnCancelarPass">Cancelar</button>
         </div>
     </div>
 </div>
