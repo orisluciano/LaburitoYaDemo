@@ -92,14 +92,12 @@ class ConfigUsuarioVista {
     }
 
     btnPassOnClick(){
-        let divPass = document.getElementById(this.ids.divPass);
-        divPass.className = "displayFLex";
         let divContraseña = document.getElementById(this.ids.divContraseña);
-        divContraseña.className = "diplayNone";
+        divContraseña.className = "displayNone";
+        let divPass = document.getElementById(this.ids.divPass);
+        divPass.className = "displayBlock";
         let divBtnPass = document.getElementById(this.ids.divBtnPass);
-        divBtnPass.className = "displayFlex marginBotton20";
-        let btnPass = document.getElementById(this.ids.btnPass);
-        btnPass.className = "displayNone";
+        divBtnPass.className = "displayFlex";
     }
 
     btnCambiarPassOnclick(){
@@ -107,7 +105,6 @@ class ConfigUsuarioVista {
     }
 
     btnCancelarPassOnClick(){
-        alert("");
     }
 }
 export default ConfigUsuarioVista;
