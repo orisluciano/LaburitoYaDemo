@@ -77,7 +77,16 @@ class ConfigUsuarioVista {
     }
 
     btnCancelarNombreOnClick(){
-        alert("");
+        let txtUser = document.getElementById(this.ids.txtUser);
+        txtUser.disabled = true;
+        let divPassOriginal = document.getElementById(this.ids.divPassOriginal);
+        divPassOriginal.className = "displayNone";
+        let txtPass = document.getElementById(this.ids.txtPass);
+        txtPass.innerHTML = "";
+        let divBtnUser = document.getElementById(this.ids.divBtnUser);
+        divBtnUser.className = "displayNone";
+        let divNombre = document.getElementById(this.ids.divNombre);
+        divNombre.className = "marginBotton20";
     }
 
     btnPassOnClick(){
