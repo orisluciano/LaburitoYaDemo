@@ -1,3 +1,5 @@
+import TokenServicio from "../aplicacion/servicios/TokenServicio.js";
+
 class ConfigUsuarioVista {
     dir = "./html/configUsuario.html";
     ids = {
@@ -19,6 +21,7 @@ class ConfigUsuarioVista {
         btnCambiarPass : "btnCambiarPass",
         btnCancelarPass : "btnCancelarPass"
     };
+    tokenService = new TokenServicio();
 
     constructor(parameters) {
         
@@ -31,6 +34,13 @@ class ConfigUsuarioVista {
         root.innerHTML = "";
         root.innerHTML = await vista;
         this.cargarFunciones();
+        this.cargarDatos();
+    }
+
+    cargarDatos(){
+        let token = this.tokenService.parseJwt();
+        let txtUser = document.getElementById(this.ids.txtUser);
+        txtUser.value = token.user;
     }
 
     cargarFunciones(){
