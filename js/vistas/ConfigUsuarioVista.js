@@ -62,6 +62,7 @@ class ConfigUsuarioVista {
     }
 
     btnNombreOnClick(){
+        this.btnCancelarPassOnClick();
         let txtUser = document.getElementById(this.ids.txtUser);
         txtUser.disabled = false;
         let divPassOriginal = document.getElementById(this.ids.divPassOriginal);
@@ -92,6 +93,7 @@ class ConfigUsuarioVista {
     }
 
     btnPassOnClick(){
+        this.btnCancelarNombreOnClick();
         let divContraseña = document.getElementById(this.ids.divContraseña);
         divContraseña.className = "displayNone";
         let divPass = document.getElementById(this.ids.divPass);
