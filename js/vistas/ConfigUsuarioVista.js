@@ -86,7 +86,11 @@ class ConfigUsuarioVista {
     }
 
     btnCambiarNombreOnclick(){
-        alert("");
+        let txtUser = document.getElementById(this.ids.txtUser);
+        let txtPass = document.getElementById(this.ids.txtPass);
+        let user = { user : txtUser.value, pass : txtPass.value };
+        console.log(user);
+        this.btnCancelarNombreOnClick();
     }
 
     btnCancelarNombreOnClick(){
@@ -113,7 +117,15 @@ class ConfigUsuarioVista {
     }
 
     btnCambiarPassOnclick(){
-        alert("");
+        let txtActual = document.getElementById(this.ids.txtActual);
+        let txtNuevo = document.getElementById(this.ids.txtNuevo);
+        let txtNuevo2 = document.getElementById(this.ids.txtNuevo2);
+        let user = { actual : txtActual.value,
+            nuevo : txtNuevo.value,
+            nuevo2 : txtNuevo2.value
+        };
+        console.log(user);
+        this.btnCancelarPassOnClick();
     }
 
     btnCancelarPassOnClick(){
