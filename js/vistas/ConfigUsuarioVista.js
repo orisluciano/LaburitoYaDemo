@@ -1,4 +1,7 @@
+import LoginServicio from "../aplicacion/servicios/LoginServicio.js";
 import TokenServicio from "../aplicacion/servicios/TokenServicio.js";
+import UsuarioServicio from "../aplicacion/servicios/usuarioServicio.js";
+import InicioVista from "./InicioVista.js";
 
 class ConfigUsuarioVista {
     dir = "./html/configUsuario.html";
@@ -22,6 +25,7 @@ class ConfigUsuarioVista {
         btnCancelarPass : "btnCancelarPass"
     };
     tokenService = new TokenServicio();
+    userService = new UsuarioServicio();
 
     constructor(parameters) {
         
@@ -85,12 +89,18 @@ class ConfigUsuarioVista {
         divNombre.className = "displayNone";
     }
 
-    btnCambiarNombreOnclick(){
+    async btnCambiarNombreOnclick(){
         let txtUser = document.getElementById(this.ids.txtUser);
         let txtPass = document.getElementById(this.ids.txtPass);
-        let user = { user : txtUser.value, pass : txtPass.value };
-        console.log(user);
+        let user = {
+            usuario : txtUser.value,
+            pass : txtPass.value,
+            id : this.tokenService.parseJwt().userId};
+        let res = await this.userService.modificar(user);
+        console.log(res);
+        this.cargarDatos();
         this.btnCancelarNombreOnClick();
+        this.logout();
     }
 
     btnCancelarNombreOnClick(){
@@ -135,6 +145,13 @@ class ConfigUsuarioVista {
         divPass.className = "displayNone";
         let divBtnPass = document.getElementById(this.ids.divBtnPass);
         divBtnPass.className = "displayNone";
+    }
+
+    logout(){
+        let loginService = new LoginServicio();
+        loginService.logout();
+        let inicio = new InicioVista();
+        inicio.iniciarApp();
     }
 }
 export default ConfigUsuarioVista;
