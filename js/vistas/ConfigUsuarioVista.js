@@ -95,12 +95,19 @@ class ConfigUsuarioVista {
         let user = {
             usuario : txtUser.value,
             pass : txtPass.value,
-            id : this.tokenService.parseJwt().userId};
+            id : this.tokenService.parseJwt().userId,
+            passActual : txtPass.value
+        };
         let res = await this.userService.modificar(user);
-        console.log(res);
-        this.cargarDatos();
-        this.btnCancelarNombreOnClick();
-        this.logout();
+        if (res.mensajes.length > 0) {
+            alert(res.mensajes[0]);
+            console.log(res);
+            this.cargarDatos();
+            this.btnCancelarNombreOnClick();
+            this.logout();
+        } else {
+            alert(res.errores[0]);
+        }
     }
 
     btnCancelarNombreOnClick(){
