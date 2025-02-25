@@ -101,7 +101,6 @@ class ConfigUsuarioVista {
         let res = await this.userService.modificar(user);
         if (res.mensajes.length > 0) {
             alert(res.mensajes[0]);
-            console.log(res);
             this.cargarDatos();
             this.btnCancelarNombreOnClick();
             this.logout();
@@ -133,16 +132,28 @@ class ConfigUsuarioVista {
         divBtnPass.className = "displayFlex";
     }
 
-    btnCambiarPassOnclick(){
+    async btnCambiarPassOnclick(){
+        let txtUser = document.getElementById(this.ids.txtUser);
         let txtActual = document.getElementById(this.ids.txtActual);
         let txtNuevo = document.getElementById(this.ids.txtNuevo);
         let txtNuevo2 = document.getElementById(this.ids.txtNuevo2);
-        let user = { actual : txtActual.value,
+        let user = { 
+            usuario : txtUser.value,
+            pass : txtNuevo2.value,
+            id : this.tokenService.parseJwt().userId,
+            passActual : txtActual.value,
             nuevo : txtNuevo.value,
             nuevo2 : txtNuevo2.value
         };
-        console.log(user);
-        this.btnCancelarPassOnClick();
+        let res = await this.userService.modificar(user);
+        if (res.mensajes.length > 0 || null) {
+            alert(res.mensajes[0]);
+            this.cargarDatos();
+            this.btnCancelarNombreOnClick();
+            this.logout();
+        } else {
+            alert(res.errores[0]);
+        }
     }
 
     btnCancelarPassOnClick(){
