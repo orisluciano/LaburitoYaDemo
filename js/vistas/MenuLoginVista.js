@@ -1,3 +1,4 @@
+import CrearCuentaVista from "./CrearCuentaVista.js";
 import ModalLogin from "./ModalLogin.js";
 import PerfilTrabajadorVista from "./PerfilTrabajadorVista.js";
 import SloganVista from "./SloganVista.js";
@@ -46,7 +47,8 @@ class MenuLoginVista {
     }
 
     btnCuentaOnclick(){
-        alert("Proximamente");
+        let cuenta = new CrearCuentaVista();
+        cuenta.CargarVista();
     }
 }
 

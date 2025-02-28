@@ -9,8 +9,11 @@ class UsuarioServicio {
         
     }
 
-    crear(usuario){
-        alert("Proximamente");
+    async crear(usuario){
+        let dir = this.dir;
+        let base = await this.peticiones.peticionesVarias(dir, "POST", usuario, this.tokenService.BearerToken());
+        let json = await base;
+        return json;
     }
 
     async modificar(usuario){
