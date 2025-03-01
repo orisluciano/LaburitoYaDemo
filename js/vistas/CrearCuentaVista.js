@@ -39,24 +39,43 @@ class CrearCuentaVista {
     }
 
     async btnNuevaCuentaOnClick(){
+        let listaCampos = [];
         let txtMail = document.getElementById(this.ids.txtMail);
+        listaCampos.push(txtMail.value);
         let txtUser = document.getElementById(this.ids.txtUser);
+        listaCampos.push(txtUser.value);
         let txtPass = document.getElementById(this.ids.txtPass);
+        listaCampos.push(txtPass.value);
         let txtPass2 = document.getElementById(this.ids.txtPass2);
+        listaCampos.push(txtPass2.value);
         let slcMail = document.getElementById(this.ids.slcMail);
-        let user = {
-            "usuario": txtUser.value,
-            "tipoUsuarioId": 2,
-            "pass" : txtPass.value,
-            "mail" : txtMail.value + "@" + slcMail.value
-        }
-        let servicio = new UsuarioServicio();
-        let res = await servicio.crear(user);
-        if (res.errores.length > 0) {
-            alert(res.errores[0]);
+        if (this.camposVacios(listaCampos)) {
+            alert("Hay uno o mas campos vacios");
         } else {
-            alert(res.mensajes[0]);
+            let user = {
+                "usuario": txtUser.value,
+                "tipoUsuarioId": 2,
+                "pass" : txtPass.value,
+                "mail" : txtMail.value + "@" + slcMail.value
+            }
+            let servicio = new UsuarioServicio();
+            let res = await servicio.crear(user);
+            if (res.errores.length > 0) {
+                alert(res.errores[0]);
+            } else {
+                alert(res.mensajes[0]);
+            }
         }
+    }
+
+    camposVacios(lista){
+        let bandera = false;
+        lista.forEach(e => {
+            if (e === "") {
+                bandera = true;
+            }
+        });
+        return bandera;
     }
 }
 
