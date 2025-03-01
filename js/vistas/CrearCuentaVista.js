@@ -52,18 +52,22 @@ class CrearCuentaVista {
         if (this.camposVacios(listaCampos)) {
             alert("Hay uno o mas campos vacios");
         } else {
-            let user = {
-                "usuario": txtUser.value,
-                "tipoUsuarioId": 2,
-                "pass" : txtPass.value,
-                "mail" : txtMail.value + "@" + slcMail.value
-            }
-            let servicio = new UsuarioServicio();
-            let res = await servicio.crear(user);
-            if (res.errores.length > 0) {
-                alert(res.errores[0]);
+            if (this.verificarContaseñas(txtPass.value, txtPass2.value)) {
+                let user = {
+                    "usuario": txtUser.value,
+                    "tipoUsuarioId": 2,
+                    "pass" : txtPass.value,
+                    "mail" : txtMail.value + "@" + slcMail.value
+                }
+                let servicio = new UsuarioServicio();
+                let res = await servicio.crear(user);
+                if (res.errores.length > 0) {
+                    alert(res.errores[0]);
+                } else {
+                    alert(res.mensajes[0]);
+                }
             } else {
-                alert(res.mensajes[0]);
+                alert("Las contraseñas no coinciden");
             }
         }
     }
@@ -76,6 +80,10 @@ class CrearCuentaVista {
             }
         });
         return bandera;
+    }
+
+    verificarContaseñas(pass, pass2){
+        return(pass === pass2);
     }
 }
 
