@@ -52,7 +52,11 @@ class CrearCuentaVista {
         }
         let servicio = new UsuarioServicio();
         let res = await servicio.crear(user);
-        console.log(res);
+        if (res.errores.length > 0) {
+            alert(res.errores[0]);
+        } else {
+            alert(res.mensajes[0]);
+        }
     }
 }
 
