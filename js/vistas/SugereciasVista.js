@@ -1,9 +1,12 @@
+import SugerenciaServicio from "../aplicacion/servicios/SugerenciaServicio.js";
+
 class SugerenciaVista {
     dir = "./html/sugerencias.html";
     ids = {
         txtSugerencia : "txtSugerencia",
         btnEnviar : "btnEnviar"
     };
+    servicio = new SugerenciaServicio();
 
     constructor(parameters) {
         
@@ -26,10 +29,18 @@ class SugerenciaVista {
         }
     }
 
-    btnEnviarOnClick(){
+    async btnEnviarOnClick(){
         let txtSugerencia = document.getElementById(this.ids.txtSugerencia);
         console.log(txtSugerencia.value);
-        alert("Su sugerencia fue enviada. Muchas gracias");
+        let sugerencia = {
+            descripcion : txtSugerencia.value
+        }
+        let resServ = await this.servicio.Nuevo(sugerencia);
+        if (resServ.errores.length > 0) {
+            alert(resServ.errores[0]);
+        } else {
+            alert(resServ.mensajes[0]);
+        }
     }
 }
 
