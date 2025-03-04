@@ -40,6 +40,8 @@ class SugerenciaVista {
             alert(resServ.errores[0]);
         } else {
             alert(resServ.mensajes[0]);
+            let root = document.getElementById("root");
+            root.innerHTML = "";
         }
     }
 }

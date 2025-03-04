@@ -11,7 +11,7 @@ class SugerenciaServicio {
     }
 
     async Nuevo(sugerencia) {
-        sugerencia.userId = this.tokenService.parseJwt().userId;
+        sugerencia.usuarioId = this.tokenService.parseJwt().userId;
         let base = await this.peticiones.peticionesVarias(this.dir, "POST", sugerencia, this.tokenService.BearerToken());
         let json = await base;
         return json;
