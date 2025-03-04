@@ -42,6 +42,16 @@ svg {
     fill: currentColor;
 }
 
+select {
+    border: none;
+    background: aliceblue;
+    color: #3f51b59e;
+}
+
+select:focus{
+    outline: none;
+}
+
 .bgAzul {
     background-color: #3f51b59e;
     color: aliceblue;
