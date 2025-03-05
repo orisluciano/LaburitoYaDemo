@@ -5,9 +5,9 @@ class CrearCuentaVista {
     ids = {
         txtMail : "txtMail",
         slcMail : "slcMail",
-        txtUser : "txtUser",
-        txtPass : "txtPass",
-        txtPass2 : "txtPass2",
+        txtUser : "txtUserNuevo",
+        txtPass : "txtPassNuevo",
+        txtPass2 : "txtPass2Nuevo",
         btnNuevaCuenta : "btnNuevaCuenta"
     };
     constructor(parameters) {
