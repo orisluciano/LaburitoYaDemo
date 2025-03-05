@@ -65,6 +65,8 @@ class CrearCuentaVista {
                     alert(res.errores[0]);
                 } else {
                     alert(res.mensajes[0]);
+                    let root = document.getElementById("root");
+                    root.innerHTML = "";
                 }
             } else {
                 alert("Las contraseñas no coinciden");
