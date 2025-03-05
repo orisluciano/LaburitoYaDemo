@@ -3,7 +3,7 @@
         <div class="displayFlex centrarContenido">
             <h3>Perfil de trabajador</h3>
         </div>
-        <div class="displayBlock borderDivInput centrarContenido">
+        <div class="displayBlock centrarContenido">
             <div class="borderDivInput marginBotton20">
                 <input type="text" placeholder="Ingrese su nombre" id="txtNombre" class="width100 inputText" disabled>
             </div>
@@ -25,7 +25,7 @@
             <div class="displayFlex centrarContenido">
                 <h4>Rubros</h4>
             </div>
-            <div class="borderDivInput">
+            <div class="padding15">
                 <ul id="listaRubros">
                 </ul>
             </div>
@@ -36,7 +36,7 @@
                 <button class="btnRelleno cabecera" id="btnEditarRubros">Editar</button>
                 <button class="btnRelleno cabecera" id="btnCancelarRubros">Cancelar</button>
             </div>
-            <div id="divModRubros">
+            <div id="divModRubros" class="padding15">
                 <button class="btnRelleno cabecera" id="btnModificarRubros">Modificar</button>
             </div>
         </div>
@@ -44,19 +44,21 @@
             <div class="displayFlex centrarContenido">
                 <h4>Contactos</h4>
             </div>
-            <div class="borderDivInput">
+            <div class="padding15">
                 <ul id="listaContactos">
                 </ul>
             </div>
             <div class="displayNone" id="divInputContacto">
-                <input type="text" id="txtContacto">
-                <select id="slcContacto"></select>
+                <div class="borderDivInput margin15">
+                    <input type="text" id="txtContacto" class="inputText" placeholder="Ingrese su contacto">
+                    <select id="slcContacto"></select>
+                </div>
             </div>
             <div class="displayNone" id="divContacto">
                 <button class="btnRelleno cabecera" id="btnEditarCon">Editar</button>
                 <button class="btnRelleno cabecera" id="btnCancelarCon">Cancelar</button>
             </div>
-            <div id="divModCon">
+            <div id="divModCon" style="padding-bottom: 30px;">
                 <button class="btnRelleno cabecera" id="btnModificarCon">Modificar</button>
             </div>
         </div>

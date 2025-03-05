@@ -27,6 +27,10 @@ ul {
     text-align: center;
 }
 
+li {
+    margin: 5px;
+}
+
 p {
     display: block;
     margin-block-start: 0em;
@@ -157,6 +161,10 @@ select:focus{
 
 .margin0 {
     margin: 0px;
+}
+
+.margin15{
+    margin: 15px;
 }
 
 .marginBotton20 {
