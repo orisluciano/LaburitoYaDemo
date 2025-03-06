@@ -272,25 +272,30 @@ class PerfilTrabajadorVista {
         let apellido = txtApellido.value;
         let txtDecrip = document.getElementById(this.ids.txtDecrip);
         let descripcion = txtDecrip.value;
-        this.datos.apellido = apellido;
-        this.datos.nombre = nombre;
-        this.datos.descripcion = descripcion;
-        let res;
-        if (this.datos.id === null) {
-            res = await this.trabajadorService.nuevoTrabajador(this.datos);
+        if (descripcion.length <= 200) {
+            this.datos.apellido = apellido;
+            this.datos.nombre = nombre;
+            this.datos.descripcion = descripcion;
+            let res;
+            if (this.datos.id === null) {
+                res = await this.trabajadorService.nuevoTrabajador(this.datos);
+            } else {
+                res = await this.trabajadorService.modificarTrabajador(this.datos);
+            }
+            if (res.errores.length > 0) {
+                res.errores.forEach(e => {
+                    alert(e);
+                });
+            } else {
+                res.mensajes.forEach(e => {
+                    alert(e);
+                });
+                this.btnCancelarrApiNomOnClick();
+            }    
         } else {
-            res = await this.trabajadorService.modificarTrabajador(this.datos);
+            alert("La descripcion es muy larga. Escriba algo mas corto por favor.");
         }
-        if (res.errores.length > 0) {
-            res.errores.forEach(e => {
-                alert(e);
-            });
-        } else {
-            res.mensajes.forEach(e => {
-                alert(e);
-            });
-            this.btnCancelarrApiNomOnClick();
-        }
+        
     }
 
     btnCancelarrApiNomOnClick(){
