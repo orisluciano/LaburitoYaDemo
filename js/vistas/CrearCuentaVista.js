@@ -52,24 +52,28 @@ class CrearCuentaVista {
         if (this.camposVacios(listaCampos)) {
             alert("Hay uno o mas campos vacios");
         } else {
-            if (this.verificarContaseñas(txtPass.value, txtPass2.value)) {
-                let user = {
-                    "usuario": txtUser.value,
-                    "tipoUsuarioId": 2,
-                    "pass" : txtPass.value,
-                    "mail" : txtMail.value + "@" + slcMail.value
-                }
-                let servicio = new UsuarioServicio();
-                let res = await servicio.crear(user);
-                if (res.errores.length > 0) {
-                    alert(res.errores[0]);
+            if (txtPass.value.length >= 8) {
+                if (this.verificarContaseñas(txtPass.value, txtPass2.value)) {
+                    let user = {
+                        "usuario": txtUser.value,
+                        "tipoUsuarioId": 2,
+                        "pass" : txtPass.value,
+                        "mail" : txtMail.value + "@" + slcMail.value
+                    }
+                    let servicio = new UsuarioServicio();
+                    let res = await servicio.crear(user);
+                    if (res.errores.length > 0) {
+                        alert(res.errores[0]);
+                    } else {
+                        alert(res.mensajes[0]);
+                        let root = document.getElementById("root");
+                        root.innerHTML = "";
+                    }
                 } else {
-                    alert(res.mensajes[0]);
-                    let root = document.getElementById("root");
-                    root.innerHTML = "";
-                }
+                    alert("Las contraseñas no coinciden");
+                }   
             } else {
-                alert("Las contraseñas no coinciden");
+                alert("La contraseña de tener por lo menos 8 caracteres");
             }
         }
     }
