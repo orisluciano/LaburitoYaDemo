@@ -31,17 +31,20 @@ class SugerenciaVista {
 
     async btnEnviarOnClick(){
         let txtSugerencia = document.getElementById(this.ids.txtSugerencia);
-        console.log(txtSugerencia.value);
-        let sugerencia = {
-            descripcion : txtSugerencia.value
-        }
-        let resServ = await this.servicio.Nuevo(sugerencia);
-        if (resServ.errores.length > 0) {
-            alert(resServ.errores[0]);
+        if (txtSugerencia.value.length < 100) {
+            let sugerencia = {
+                descripcion : txtSugerencia.value
+            }
+            let resServ = await this.servicio.Nuevo(sugerencia);
+            if (resServ.errores.length > 0) {
+                alert(resServ.errores[0]);
+            } else {
+                alert(resServ.mensajes[0]);
+                let root = document.getElementById("root");
+                root.innerHTML = "";
+            }   
         } else {
-            alert(resServ.mensajes[0]);
-            let root = document.getElementById("root");
-            root.innerHTML = "";
+            alert("La sugerencia es muy larga. Escriba algo mas corto por favor.");
         }
     }
 }
