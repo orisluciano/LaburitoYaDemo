@@ -7,8 +7,7 @@ class BuscadorVista {
     ids = { txtRubro : "txtRubro",
         btnBuscar : "btnBuscar",
         tBody : "tBody",
-        slcRubroBuscador : "slcRubroBuscador",
-        txtNumBuscador : "txtNumBuscador"
+        slcRubroBuscador : "slcRubroBuscador"
     };
     trabajadorService = new TrabajadorServicio();
     rubroService = new RubroServicio();
@@ -31,7 +30,7 @@ class BuscadorVista {
         let esto = this;
         let btnBuscar = document.getElementById(this.ids.btnBuscar);
         btnBuscar.onclick = function() {
-            esto.buscar();            
+            esto.buscar(0);            
         }
     }
 
@@ -50,22 +49,22 @@ class BuscadorVista {
         });
     }
 
-    buscar(){
+    buscar(desde){
         let slcRubroBuscador = document.getElementById(this.ids.slcRubroBuscador);
-        this.cargarTabla(slcRubroBuscador.value);
+        this.cargarTabla(slcRubroBuscador.value, desde, 10);
     }
 
-    async cargarDatos(rubro){
+    async cargarDatos(rubro, desde, cantidad){
         if (rubro === "") {
-            return await this.trabajadorService.Buscar(0,10);   
+            return await this.trabajadorService.Buscar(desde,cantidad);   
         } else {
-            return await this.trabajadorService.buscarPorRubro(0,10,rubro);
+            return await this.trabajadorService.buscarPorRubro(desde, cantidad,rubro);
         }
     }
 
-    async cargarTabla(rubro){
+    async cargarTabla(rubro, desde, cantidad){
         let esto = this;
-        let datos = await this.cargarDatos(rubro);
+        let datos = await this.cargarDatos(rubro, desde, cantidad);
         if (datos.errores.length > 0) {
             alert("Hubo un error. Intente de nuevo");
         } else {
