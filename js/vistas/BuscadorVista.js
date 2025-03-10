@@ -1,3 +1,4 @@
+import RubroServicio from "../aplicacion/servicios/RubroServicio.js";
 import TrabajadorServicio from "../aplicacion/servicios/TrabajadorServicio.js";
 import ModalTrabajador from "./ModalTrabajador.js";
 
@@ -5,9 +6,12 @@ class BuscadorVista {
     dir = "./html/buscador.html";
     ids = { txtRubro : "txtRubro",
         btnBuscar : "btnBuscar",
-        tBody : "tBody"
+        tBody : "tBody",
+        slcRubroBuscador : "slcRubroBuscador",
+        txtNumBuscador : "txtNumBuscador"
     };
     trabajadorService = new TrabajadorServicio();
+    rubroService = new RubroServicio();
 
     constructor(parameters) {
         
@@ -20,6 +24,7 @@ class BuscadorVista {
         root.innerHTML = "";
         root.innerHTML = await vista;
         this.cargarFunciones();
+        this.cargarRubros();
     }
 
     cargarFunciones(){
@@ -30,17 +35,32 @@ class BuscadorVista {
         }
     }
 
-    cargarMenu(){
-        
+    async cargarRubros(){
+        let rubros = await this.rubroService.Buscar(0,50);
+        let slcRubroBuscador = document.getElementById(this.ids.slcRubroBuscador);
+        let option = document.createElement("option");
+        option.value = "";
+        option.innerHTML = "";
+        slcRubroBuscador.appendChild(option);
+        rubros.respuesta.resultados.forEach(e => {
+            let op = document.createElement("option");
+            op.value = e.id;
+            op.innerHTML = e.descripcion;
+            slcRubroBuscador.appendChild(op);
+        });
     }
 
     buscar(){
-        let txtRubro = document.getElementById(this.ids.txtRubro);
-        this.cargarTabla(txtRubro.value);
+        let slcRubroBuscador = document.getElementById(this.ids.slcRubroBuscador);
+        this.cargarTabla(slcRubroBuscador.value);
     }
 
     async cargarDatos(rubro){
-        return await this.trabajadorService.Buscar(0,10);;
+        if (rubro === "") {
+            return await this.trabajadorService.Buscar(0,10);   
+        } else {
+            return await this.trabajadorService.buscarPorRubro(0,10,rubro);
+        }
     }
 
     async cargarTabla(rubro){

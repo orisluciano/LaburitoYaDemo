@@ -44,9 +44,11 @@ class TrabajadorServicio {
         return json;
     }
 
-    buscarPorRubro(rubro){
-        alert("No Implementado");
-
+    async buscarPorRubro(desde, cantidad, rubro){
+        let dir = this.dir + "/rubro/" + desde + "/" + cantidad + "/" + rubro;
+        let base = await this.peticiones.peticionGet(dir, "GET");
+        let json = await base;
+        return json;
     }
 }
 
