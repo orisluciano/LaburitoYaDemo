@@ -148,16 +148,21 @@ class ConfigUsuarioVista {
             id : this.tokenService.parseJwt().userId,
             passActual : txtActual.value,
             nuevo : txtNuevo.value,
-            nuevo2 : txtNuevo2.value
+            nuevo2 : txtNuevo2.value,
+            mail : this.tokenService.parseJwt().mail
         };
         let res = await this.userService.modificar(user);
-        if (res.mensajes.length > 0 || null) {
-            alert(res.mensajes[0]);
-            this.cargarDatos();
-            this.btnCancelarNombreOnClick();
-            this.logout();
+        if (user.nuevo === "" || user.nuevo2 === "" || user.passActual === "") {
+            alert("Hay campos vacios");
         } else {
-            alert(res.errores[0]);
+            if (res.mensajes.length > 0 || null) {
+                alert(res.mensajes[0]);
+                this.cargarDatos();
+                this.btnCancelarNombreOnClick();
+                this.logout();
+            } else {
+                alert(res.errores[0]);
+            }   
         }
     }
 
