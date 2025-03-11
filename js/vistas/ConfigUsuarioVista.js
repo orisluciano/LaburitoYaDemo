@@ -96,16 +96,21 @@ class ConfigUsuarioVista {
             usuario : txtUser.value,
             pass : txtPass.value,
             id : this.tokenService.parseJwt().userId,
-            passActual : txtPass.value
+            passActual : txtPass.value,
+            mail : this.tokenService.parseJwt().mail
         };
-        let res = await this.userService.modificar(user);
-        if (res.mensajes.length > 0) {
-            alert(res.mensajes[0]);
-            this.cargarDatos();
-            this.btnCancelarNombreOnClick();
-            this.logout();
+        if (user.passActual === "") {
+            alert("Ingrese su contraseña");
         } else {
-            alert(res.errores[0]);
+            let res = await this.userService.modificar(user);
+            if (res.errores.length > 0) {
+                alert(res.errores[0]);
+            } else {
+                alert(res.mensajes[0]);
+                this.cargarDatos();
+                this.btnCancelarNombreOnClick();
+                this.logout();
+            }
         }
     }
 
