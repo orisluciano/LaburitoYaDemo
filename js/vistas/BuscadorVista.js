@@ -7,7 +7,8 @@ class BuscadorVista {
     ids = { txtRubro : "txtRubro",
         btnBuscar : "btnBuscar",
         tBody : "tBody",
-        slcRubroBuscador : "slcRubroBuscador"
+        slcRubroBuscador : "slcRubroBuscador",
+        divPaginacion : "divPaginacion"
     };
     trabajadorService = new TrabajadorServicio();
     rubroService = new RubroServicio();
@@ -75,11 +76,11 @@ class BuscadorVista {
                 tabla.innerHTML = "";
                 trabajadores.forEach(e => {
                     esto.crearFila(e, tabla);
-                });    
+                });
+                this.cargarPaginacion(cantTrab, cantidad);    
             } else {
                 alert("No se encontraron trabajadores");
             }
-               
         }
     }
 
@@ -109,6 +110,24 @@ class BuscadorVista {
         console.log(datos);
         let modal = new ModalTrabajador(datos)
         modal.cargarVista();
+    }
+
+    cargarPaginacion(cantTrabaj, cantMostrar){
+        let esto = this;
+        let divPaginacion = document.getElementById(this.ids.divPaginacion);
+        divPaginacion.innerHTML = "";
+        if(cantTrabaj > cantMostrar){
+            let cantBtns = cantTrabaj / cantMostrar;
+            for (let i = 0; i < cantBtns; i++) {
+                let btn = document.createElement("button");
+                btn.innerHTML = i+1;
+                btn.className = "btnBuscar cursorPointer";
+                btn.onclick = function() {
+                    esto.buscar(i * cantMostrar);
+                }
+                divPaginacion.appendChild(btn);
+            }
+        }
     }
 }
 
