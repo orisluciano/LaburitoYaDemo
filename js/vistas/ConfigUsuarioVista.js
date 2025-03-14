@@ -29,7 +29,9 @@ class ConfigUsuarioVista {
         btnMail : "btnMail",
         btnCambiarMail : "btnCambiarMail",
         btnCancelarMail : "btnCancelarMail",
-        divBtnMail : "divBtnMail"
+        divBtnMail : "divBtnMail",
+        divPassMail : "divPassMail",
+        txtPassMail : "txtPassMail"
     };
     tokenService = new TokenServicio();
     userService = new UsuarioServicio();
@@ -207,10 +209,34 @@ class ConfigUsuarioVista {
         divCambiarMail.className = "displayNone";
         let divBtnMail = document.getElementById(this.ids.divBtnMail);
         divBtnMail.className = "displayFlex";
+        let divPassMail = document.getElementById(this.ids.divPassMail);
+        divPassMail.className = "borderDivInput marginBotton20";
     }
 
-    btnCambiarMailOnClick(){
-        alert();
+    async btnCambiarMailOnClick(){
+        let txtMailConfig = document.getElementById(this.ids.txtMailConfig);
+        let slcMailConfig = document.getElementById(this.ids.slcMailConfig);
+        let txtPassMail = document.getElementById(this.ids.txtPassMail);
+        let user = {
+            usuario : this.tokenService.parseJwt().user,
+            pass : txtPassMail.value,
+            id : this.tokenService.parseJwt().userId,
+            passActual : txtPassMail.value,
+            mail : txtMailConfig.value + "@" + slcMailConfig.value
+        };
+        if (user.passActual === "") {
+            alert("Ingrese su contraseña");
+        } else {
+            let res = await this.userService.modificar(user);
+            if (res.errores.length > 0) {
+                alert(res.errores[0]);
+            } else {
+                alert(res.mensajes[0]);
+                this.cargarDatos();
+                this.btnCancelarNombreOnClick();
+                this.logout();
+            }
+        }
     }
 
     btnCancelarMail(){
@@ -222,6 +248,8 @@ class ConfigUsuarioVista {
         divCambiarMail.className = "displayFlex";
         let divBtnMail = document.getElementById(this.ids.divBtnMail);
         divBtnMail.className = "displayNone";
+        let divPassMail = document.getElementById(this.ids.divPassMail);
+        divPassMail.className = "displayNone";
     }
 
     logout(){
