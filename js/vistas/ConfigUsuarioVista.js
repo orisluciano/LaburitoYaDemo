@@ -54,6 +54,11 @@ class ConfigUsuarioVista {
         let token = this.tokenService.parseJwt();
         let txtUser = document.getElementById(this.ids.txtUser);
         txtUser.value = token.user;
+        let mailArray = token.mail.split("@");
+        let txtMailConfig = document.getElementById(this.ids.txtMailConfig);
+        txtMailConfig.value = mailArray[0];
+        let slcMailConfig = document.getElementById(this.ids.slcMailConfig);
+        slcMailConfig.value = mailArray[1];
     }
 
     cargarFunciones(){
