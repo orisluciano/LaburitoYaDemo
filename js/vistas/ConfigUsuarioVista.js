@@ -22,7 +22,14 @@ class ConfigUsuarioVista {
         txtNuevo2 : "txtNuevo2",
         divBtnPass : "divBtnPass",
         btnCambiarPass : "btnCambiarPass",
-        btnCancelarPass : "btnCancelarPass"
+        btnCancelarPass : "btnCancelarPass",
+        txtMailConfig : "txtMailConfig",
+        slcMailConfig : "slcMailConfig",
+        divCambiarMail : "divCambiarMail",
+        btnMail : "btnMail",
+        btnCambiarMail : "btnCambiarMail",
+        btnCancelarMail : "btnCancelarMail",
+        divBtnMail : "divBtnMail"
     };
     tokenService = new TokenServicio();
     userService = new UsuarioServicio();
@@ -73,10 +80,23 @@ class ConfigUsuarioVista {
         btnCancelarPass.onclick = function() {
             esto.btnCancelarPassOnClick();
         };
+        let btnMail = document.getElementById(this.ids.btnMail);
+        btnMail.onclick = function() {
+            esto.btnMailOnClick();
+        };
+        let btnCambiarMail = document.getElementById(this.ids.btnCambiarMail);
+        btnCambiarMail.onclick = function() {
+            esto.btnCambiarMailOnClick();
+        };
+        let btnCancelarMail = document.getElementById(this.ids.btnCancelarMail);
+        btnCancelarMail.onclick = function() {
+            esto.btnCancelarMail();
+        };
     }
 
     btnNombreOnClick(){
         this.btnCancelarPassOnClick();
+        this.btnCancelarMail();
         let txtUser = document.getElementById(this.ids.txtUser);
         txtUser.disabled = false;
         let divPassOriginal = document.getElementById(this.ids.divPassOriginal);
@@ -129,6 +149,7 @@ class ConfigUsuarioVista {
 
     btnPassOnClick(){
         this.btnCancelarNombreOnClick();
+        this.btnCancelarMail();
         let divContraseña = document.getElementById(this.ids.divContraseña);
         divContraseña.className = "displayNone";
         let divPass = document.getElementById(this.ids.divPass);
@@ -173,6 +194,34 @@ class ConfigUsuarioVista {
         divPass.className = "displayNone";
         let divBtnPass = document.getElementById(this.ids.divBtnPass);
         divBtnPass.className = "displayNone";
+    }
+
+    btnMailOnClick(){
+        this.btnCancelarNombreOnClick();
+        this.btnCancelarPassOnClick();
+        let txtMailConfig = document.getElementById(this.ids.txtMailConfig);
+        txtMailConfig.disabled = false;
+        let slcMailConfig = document.getElementById(this.ids.slcMailConfig);
+        slcMailConfig.disabled = false;
+        let divCambiarMail = document.getElementById(this.ids.divCambiarMail);
+        divCambiarMail.className = "displayNone";
+        let divBtnMail = document.getElementById(this.ids.divBtnMail);
+        divBtnMail.className = "displayFlex";
+    }
+
+    btnCambiarMailOnClick(){
+        alert();
+    }
+
+    btnCancelarMail(){
+        let txtMailConfig = document.getElementById(this.ids.txtMailConfig);
+        txtMailConfig.disabled = true;
+        let slcMailConfig = document.getElementById(this.ids.slcMailConfig);
+        slcMailConfig.disabled = true;
+        let divCambiarMail = document.getElementById(this.ids.divCambiarMail);
+        divCambiarMail.className = "displayFlex";
+        let divBtnMail = document.getElementById(this.ids.divBtnMail);
+        divBtnMail.className = "displayNone";
     }
 
     logout(){
