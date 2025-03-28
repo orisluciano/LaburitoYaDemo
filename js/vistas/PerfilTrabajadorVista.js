@@ -321,7 +321,7 @@ class PerfilTrabajadorVista {
             btn.style.display = "";
         });
         let divInputRubro = document.getElementById(this.ids.divInputRubro);
-        divInputRubro.className = "";
+        divInputRubro.className = "padding15";
         this.cargarOpcionesRubros();
     }
 
