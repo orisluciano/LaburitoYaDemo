@@ -167,6 +167,7 @@ class PerfilTrabajadorVista {
                     let btn = document.createElement("button");
                     btn.innerHTML = "Eliminar";
                     btn.className = "btnRelleno cabecera";
+                    btn.style = "width: auto;";
                     btn.id = "btnEliminarRubro" + e.id;
                     lista.push(btn.id);
                     btn.style.display = "none";
@@ -211,6 +212,7 @@ class PerfilTrabajadorVista {
                     let btn = document.createElement("button");
                     btn.innerHTML = "Eliminar";
                     btn.className = "btnRelleno cabecera";
+                    btn.style = "width: auto;";
                     btn.id = "btnEliminarCon" + e.id;
                     lista.push(btn.id);
                     btn.style.display = "none";
