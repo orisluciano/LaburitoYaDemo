@@ -31,7 +31,7 @@ class BuscadorVista {
         let esto = this;
         let btnBuscar = document.getElementById(this.ids.btnBuscar);
         btnBuscar.onclick = function() {
-            esto.buscar(0);            
+            esto.buscar(0,0);            
         }
     }
 
@@ -50,9 +50,9 @@ class BuscadorVista {
         });
     }
 
-    buscar(desde){
+    buscar(desde, index){
         let slcRubroBuscador = document.getElementById(this.ids.slcRubroBuscador);
-        this.cargarTabla(slcRubroBuscador.value, desde, 10);
+        this.cargarTabla(slcRubroBuscador.value, desde, 10, index);
     }
 
     async cargarDatos(rubro, desde, cantidad){
@@ -63,7 +63,7 @@ class BuscadorVista {
         }
     }
 
-    async cargarTabla(rubro, desde, cantidad){
+    async cargarTabla(rubro, desde, cantidad, index){
         let esto = this;
         let datos = await this.cargarDatos(rubro, desde, cantidad);
         if (datos.errores.length > 0) {
@@ -77,7 +77,7 @@ class BuscadorVista {
                 trabajadores.forEach(e => {
                     esto.crearFila(e, tabla);
                 });
-                this.cargarPaginacion(cantTrab, cantidad);    
+                this.cargarPaginacion(cantTrab, cantidad, index);    
             } else {
                 alert("No se encontraron trabajadores");
             }
@@ -112,7 +112,7 @@ class BuscadorVista {
         modal.cargarVista();
     }
 
-    cargarPaginacion(cantTrabaj, cantMostrar){
+    cargarPaginacion(cantTrabaj, cantMostrar, index){
         let esto = this;
         let divPaginacion = document.getElementById(this.ids.divPaginacion);
         divPaginacion.innerHTML = "";
@@ -121,9 +121,14 @@ class BuscadorVista {
             for (let i = 0; i < cantBtns; i++) {
                 let btn = document.createElement("button");
                 btn.innerHTML = i+1;
-                btn.className = "btnBuscar cursorPointer";
+                if (index === i) {
+                    btn.className = "btnSeleccionado";
+                    btn. disabled = true;
+                } else {
+                    btn.className = "btnBuscar cursorPointer";
+                }
                 btn.onclick = function() {
-                    esto.buscar(i * cantMostrar);
+                    esto.buscar(i * cantMostrar, i);
                 }
                 divPaginacion.appendChild(btn);
             }
