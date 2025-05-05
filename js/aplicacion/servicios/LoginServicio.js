@@ -17,7 +17,8 @@ class LoginServicio {
         try {
             let body = {
                 usuario : usuario,
-                contraseña : contraseña
+                contraseña : contraseña,
+                appName : "TuLaburito"
             }; 
             let peticion = await fetch(this.api,{
                 method : "POST",
