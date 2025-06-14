@@ -80,10 +80,18 @@ class ModalTrabajador {
             if (base.respuesta.resultados.length > 0) {
                 base.respuesta.resultados.forEach(e => {
                     let r = document.createElement("li");
-                    r.innerHTML = e.tipoContacto + ": ";
                     let link = document.createElement("a");
-                    link.innerHTML = e.descripcion;
-                    link.href = e.descripcion;
+                   if (e.tipoContacto === "Telefono/Celular" || e.tipoContacto === "Email") {
+                        link.innerHTML = e.tipoContacto + ": " + e.descripcion;
+                        link.onclick = function(p) {
+                            navigator.clipboard.writeText(e.descripcion);
+                            alert(e.tipoContacto + " copiado");
+                        }
+                   } else {
+                        link.innerHTML = e.tipoContacto;
+                        link.href = e.descripcion;
+                   }
+                    link.style.cursor = "pointer";
                     link.target = "_blank";
                     r.appendChild(link);
                     rubros.appendChild(r);
