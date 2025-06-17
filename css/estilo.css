@@ -337,6 +337,24 @@ select:focus{
     width: 33%;
 }
 
+.aLink {
+    display: flex;
+    width: 90%;
+    cursor: pointer;
+    justify-content: center;
+    border-style: outset;
+    border-radius: 15px;
+    padding: 5px;
+}
+.aLink:hover{
+    background-color: #3f51b59e;
+    color: aliceblue;
+}
+
+.aLink:active{
+    border-style: inset;
+}
+
   /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */

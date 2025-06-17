@@ -80,7 +80,9 @@ class ModalTrabajador {
             if (base.respuesta.resultados.length > 0) {
                 base.respuesta.resultados.forEach(e => {
                     let r = document.createElement("li");
+                    r.className = "displayFlex centrarContenido width100 "
                     let link = document.createElement("a");
+                    link.className = "aLink cursorPointer";
                    if (e.tipoContacto === "Telefono/Celular" || e.tipoContacto === "Email") {
                         link.innerHTML = e.tipoContacto + ": " + e.descripcion;
                         link.onclick = function(p) {
