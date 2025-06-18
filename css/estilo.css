@@ -57,6 +57,12 @@ select:focus{
     outline: none;
 }
 
+a {
+    cursor: pointer;
+    text-decoration: none;
+    color: #3f51b59e
+}
+
 .bgAzul {
     background-color: #3f51b59e;
     color: aliceblue;
