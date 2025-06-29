@@ -55,7 +55,7 @@ class ModalTrabajador {
             e.btnContTrabOnClick();
         };
         let btnOpiTrab = document.getElementById(this.ids.btnOpiTrab);
-        btnContTrab.onclick = function(params) {
+        btnOpiTrab.onclick = function(params) {
             e.btnOpiTrabOnClick();
         };
     }
@@ -67,9 +67,9 @@ class ModalTrabajador {
         let descripcion = document.getElementById(this.ids.descripTrabajador);
         descripcion.innerHTML = "";
         descripcion.innerHTML = this.datos.descripcion;
-        await this.getRubrosByTrabajador();
+        /*await this.getRubrosByTrabajador();
         await this.getContactosByTrabajador();
-        await this.getOpinionesByTrabajador();
+        await this.getOpinionesByTrabajador();*/
     }
 
     async getRubrosByTrabajador(){
@@ -153,16 +153,16 @@ class ModalTrabajador {
         }
     }
 
-    btnRubroTrabOnClick(){
-        alert();
+    async btnRubroTrabOnClick(){
+        await this.getRubrosByTrabajador();
     }
 
-    btnContTrabOnClick(){
-        alert();
+    async btnContTrabOnClick(){
+        await this.getContactosByTrabajador();
     }
 
-    btnOpiTrabOnClick(){
-        alert();
+    async btnOpiTrabOnClick(){
+        await this.getOpinionesByTrabajador();
     }
 }
 
