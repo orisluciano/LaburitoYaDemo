@@ -9,13 +9,21 @@ class ModalTrabajador {
         descripTrabajador : "descripTrabajador",
         rubrosTrabajador : "rubrosTrabajador",
         contactoTrabajador : "contactoTrabajador",
-        opinionTrab : "opinionTrab"
+        opinionTrab : "opinionTrab",
+        divContenidoTrabajador : "divContenidoTrabajador",
+        btnRubroTrab : "btnRubroTrab",
+        btnContTrab : "btnContTrab",
+        btnOpiTrab : "btnOpiTrab"
     }
     base = new ModalBase();
     datos = {
         id : null,
-        nombre :"",
-        apellido :""
+        nombre : "",
+        apellido : "",
+        descripcion : "",
+        rubros : null,
+        contactos : null,
+        opiniones : null
     };
     trabajadorRubroServicio = new TrabajadorRubroServicio();
     trabajadorContactoServicio = new TrabajadorContactoServicio();
@@ -33,6 +41,23 @@ class ModalTrabajador {
         let vista = await res.text();
         await this.base.abrirModal(vista);
         this.mostrarDatos();
+        this.cargarFunciones();
+    }
+
+    cargarFunciones(){
+        let e = this;
+        let btnRubroTrab = document.getElementById(this.ids.btnRubroTrab);
+        btnRubroTrab.onclick = function(params) {
+            e.btnRubroTrabOnClick();
+        };
+        let btnContTrab = document.getElementById(this.ids.btnContTrab);
+        btnContTrab.onclick = function(params) {
+            e.btnContTrabOnClick();
+        };
+        let btnOpiTrab = document.getElementById(this.ids.btnOpiTrab);
+        btnContTrab.onclick = function(params) {
+            e.btnOpiTrabOnClick();
+        };
     }
 
     async mostrarDatos(){
@@ -126,6 +151,18 @@ class ModalTrabajador {
                     rubros.appendChild(r);
             }
         }
+    }
+
+    btnRubroTrabOnClick(){
+        alert();
+    }
+
+    btnContTrabOnClick(){
+        alert();
+    }
+
+    btnOpiTrabOnClick(){
+        alert();
     }
 }
 
