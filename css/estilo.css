@@ -164,6 +164,38 @@ a {
     align-items: center;
 }
 
+.divSolapa{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.btnSolapa{
+    background-color: aliceblue;
+    color: #3f51b59e;
+    border-style: none;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    border-color: #4a61e09e;
+    width: 33%;
+    cursor: pointer;
+}
+
+.btnSolapaIzq{
+    border-bottom-left-radius: 5px
+}
+
+.btnSolapaDer{
+    border-bottom-right-radius: 5px;
+}
+
+.btnSolapaSel{
+    border-bottom-style: none;
+    border-top-style: solid;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
 .colorFilaTabla {
     color: #3f51b59e;
 }

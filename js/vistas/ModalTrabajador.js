@@ -154,15 +154,33 @@ class ModalTrabajador {
     }
 
     async btnRubroTrabOnClick(){
-        await this.getRubrosByTrabajador();
+        //await this.getRubrosByTrabajador();
+        let btnRubro = document.getElementById(this.ids.btnRubroTrab);
+        btnRubro.className = "btnSolapa btnSolapaSel";
+        let btnCon = document.getElementById(this.ids.btnContTrab);
+        btnCon.className = "btnSolapa btnSolapaIzq";
+        let btnOpi = document.getElementById(this.ids.btnOpiTrab);
+        btnOpi.className = "btnSolapa";
     }
 
     async btnContTrabOnClick(){
-        await this.getContactosByTrabajador();
+        //await this.getContactosByTrabajador();
+        let btnRubro = document.getElementById(this.ids.btnRubroTrab);
+        btnRubro.className = "btnSolapa btnSolapaDer";
+        let btnCon = document.getElementById(this.ids.btnContTrab);
+        btnCon.className = "btnSolapa btnSolapaSel";
+        let btnOpi = document.getElementById(this.ids.btnOpiTrab);
+        btnOpi.className = "btnSolapa btnSolapaIzq";
     }
 
     async btnOpiTrabOnClick(){
-        await this.getOpinionesByTrabajador();
+        //await this.getOpinionesByTrabajador();
+        let btnRubro = document.getElementById(this.ids.btnRubroTrab);
+        btnRubro.className = "btnSolapa";
+        let btnCon = document.getElementById(this.ids.btnContTrab);
+        btnCon.className = "btnSolapa btnSolapaDer";
+        let btnOpi = document.getElementById(this.ids.btnOpiTrab);
+        btnOpi.className = "btnSolapa btnSolapaSel";
     }
 }
 
