@@ -74,7 +74,10 @@ class ModalTrabajador {
 
     async getRubrosByTrabajador(){
         let base = await this.trabajadorRubroServicio.BuscarRubrosPorTrabajador(this.datos.id);
-        let rubros = document.getElementById(this.ids.rubrosTrabajador);
+        let divContenidoTrabajador = document.getElementById(this.ids.divContenidoTrabajador);
+        divContenidoTrabajador.innerHTML = "";
+        let rubros = document.createElement("ul");
+        divContenidoTrabajador.appendChild(rubros);
         if (base.errores.length > 0) {
             let r = document.createElement("li");
             r.innerHTML = "Hubo un error. Intente de nuevo";
@@ -96,7 +99,10 @@ class ModalTrabajador {
 
     async getContactosByTrabajador(){
         let base = await this.trabajadorContactoServicio.BuscarContactosPorTrabajador(this.datos.id);
-        let rubros = document.getElementById(this.ids.contactoTrabajador);
+        let divContenidoTrabajador = document.getElementById(this.ids.divContenidoTrabajador);
+        divContenidoTrabajador.innerHTML = "";
+        let rubros = document.createElement("ul");
+        divContenidoTrabajador.appendChild(rubros);
         if (base.errores.length > 0) {
             let r = document.createElement("li");
             r.innerHTML = "Hubo un error. Intente de nuevo";
@@ -133,7 +139,10 @@ class ModalTrabajador {
 
     async getOpinionesByTrabajador() {
         let base = await this.trabajadorOpinionServicio.BuscarOpinionesPorTrabajador(this.datos.id, 0, 10);
-        let rubros = document.getElementById(this.ids.opinionTrab);
+        let divContenidoTrabajador = document.getElementById(this.ids.divContenidoTrabajador);
+        divContenidoTrabajador.innerHTML = "";
+        let rubros = document.createElement("ul");
+        divContenidoTrabajador.appendChild(rubros);
         if (base.errores.length > 0) {
             let r = document.createElement("li");
             r.innerHTML = "Hubo un error. Intente de nuevo";
@@ -153,6 +162,22 @@ class ModalTrabajador {
         }
     }
 
+    mostrarRecurso(recurso){
+        switch (recurso) {
+            case "rubro":
+                this.getRubrosByTrabajador();
+                break;
+            case "contacto":
+                this.getContactosByTrabajador();
+                break;
+            case "opinion":
+                this.getOpinionesByTrabajador();
+                break;
+            default:
+                break;
+        }
+    }
+
     async btnRubroTrabOnClick(){
         //await this.getRubrosByTrabajador();
         let btnRubro = document.getElementById(this.ids.btnRubroTrab);
@@ -161,6 +186,7 @@ class ModalTrabajador {
         btnCon.className = "btnSolapa btnSolapaIzq";
         let btnOpi = document.getElementById(this.ids.btnOpiTrab);
         btnOpi.className = "btnSolapa";
+        this.mostrarRecurso("rubro");
     }
 
     async btnContTrabOnClick(){
@@ -171,6 +197,7 @@ class ModalTrabajador {
         btnCon.className = "btnSolapa btnSolapaSel";
         let btnOpi = document.getElementById(this.ids.btnOpiTrab);
         btnOpi.className = "btnSolapa btnSolapaIzq";
+        this.mostrarRecurso("contacto");
     }
 
     async btnOpiTrabOnClick(){
@@ -181,6 +208,7 @@ class ModalTrabajador {
         btnCon.className = "btnSolapa btnSolapaDer";
         let btnOpi = document.getElementById(this.ids.btnOpiTrab);
         btnOpi.className = "btnSolapa btnSolapaSel";
+        this.mostrarRecurso("opinion");
     }
 }
 
