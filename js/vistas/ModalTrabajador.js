@@ -151,7 +151,22 @@ class ModalTrabajador {
             if (base.respuesta.resultados.length > 0) {
                 base.respuesta.resultados.forEach(e => {
                     let r = document.createElement("li");
-                    r.innerHTML = e.opinion;
+                    let d = document.createElement("div");
+                    d.className = "divLista";
+                    r.appendChild(d);
+                    let fecha = document.createElement("p");
+                    fecha.innerHTML = "Fecha: " + e.fechaCreacion;
+                    d.appendChild(fecha);
+                    let calif = document.createElement("p");
+                    let estrellas = "";
+                    for (let index = 0; index < e.calificacion; index++) {
+                        estrellas = estrellas + "*";
+                    }
+                    calif.innerHTML = "Calificacion: " + e.calificacion + "/5 " + estrellas;
+                    d.appendChild(calif);
+                    let o = document.createElement("p");
+                    o.innerHTML = e.opinion;
+                    d.appendChild(o);
                     rubros.appendChild(r);
                 });   
             } else {
