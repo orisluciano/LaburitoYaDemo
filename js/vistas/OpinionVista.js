@@ -1,3 +1,5 @@
+import TrabajadorOpinionServicio from "../aplicacion/servicios/TrabajadorOpinionServicio.js";
+
 class OpinionVista {
     dir = "./html/opinion.html";
     ids = {
@@ -5,6 +7,7 @@ class OpinionVista {
         slcCalif : "slcCalif",
         btnOpinar : "btnOpinar"
     }
+    opinionServicio = new TrabajadorOpinionServicio();
 
     constructor(parameters) {
         
@@ -27,11 +30,12 @@ class OpinionVista {
         }
     }
 
-    btnOpinarOnClick(){
+    async btnOpinarOnClick(){
         let txtOpinion = document.getElementById(this.ids.txtOpinion);
         let opinion = txtOpinion.value;
         let slcCalif = document.getElementById(this.ids.slcCalif);
         alert(opinion + slcCalif.value);
+        let base = this.opinionServicio.NuevoTrabadorOpinion();
     }
 }
 
