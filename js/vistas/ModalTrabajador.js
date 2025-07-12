@@ -2,6 +2,7 @@ import TrabajadorContactoServicio from "../aplicacion/servicios/TrabajadorContac
 import TrabajadorOpinionServicio from "../aplicacion/servicios/TrabajadorOpinionServicio.js";
 import TrabajadorRubroServicio from "../aplicacion/servicios/TrabajadorRubroServicio.js";
 import ModalBase from "./ModalBase.js";
+import OpinionVista from "./OpinionVista.js";
 
 class ModalTrabajador {
     dir = "./html/modalTrabajador.html";
@@ -224,6 +225,12 @@ class ModalTrabajador {
         let btnOpi = document.getElementById(this.ids.btnOpiTrab);
         btnOpi.className = "btnSolapa btnSolapaSel";
         this.mostrarRecurso("opinion");
+        this.cargarOpinionVista();
+    }
+
+    cargarOpinionVista(){
+        let opi = new OpinionVista();
+        opi.CargarVista();
     }
 }
 
