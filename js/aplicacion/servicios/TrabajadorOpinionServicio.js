@@ -1,15 +1,19 @@
 import PeticionesHttp from "../utiles/PeticionesHttp.js";
+import TokenServicio from "./TokenServicio.js";
 
 class TrabajadorOpinionServicio {
-    dir = "http://localhost/BackendLaburitoYa/api/trabajadoropinion/";
+    dir = "http://localhost/BackendLaburitoYa/api/trabajadoropinion";
     peticiones = new PeticionesHttp();
-    
+    tokenService = new TokenServicio();
+
     constructor(parameters) {
         
     }
 
-    NuevoTrabadorOpinion(to) {
-        alert("No Implementado");
+    async NuevoTrabadorOpinion(to) {
+        let base = await this.peticiones.peticionesVarias(this.dir, "POST", to, this.tokenService.BearerToken());
+        let json = await base;
+        return json;
     }
 
     ModificarTrabajadorOpinion(to){
@@ -21,7 +25,7 @@ class TrabajadorOpinionServicio {
     }
 
     async Buscar(desde, cantidad){
-        let dir = this.dir + desde + "/" + cantidad;
+        let dir = this.dir + "/" + desde + "/" + cantidad;
         let base = await this.peticiones.peticionGet(dir, "GET");
         let json = await base;
         return json;
