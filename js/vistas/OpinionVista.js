@@ -7,10 +7,17 @@ class OpinionVista {
         slcCalif : "slcCalif",
         btnOpinar : "btnOpinar"
     }
+    trabajadorOpinion = {
+        usuarioId : null,
+        trabajadorId : null,
+        calificacion : null,
+        opinion : null
+    }
     opinionServicio = new TrabajadorOpinionServicio();
 
-    constructor(parameters) {
-        
+    constructor(usuarioId, trabajadorId) {
+        this.trabajadorOpinion.usuarioId = usuarioId;
+        this.trabajadorOpinion.trabajadorId = trabajadorId;
     }
 
     async CargarVista() {
@@ -35,7 +42,18 @@ class OpinionVista {
         let opinion = txtOpinion.value;
         let slcCalif = document.getElementById(this.ids.slcCalif);
         alert(opinion + slcCalif.value);
-        let base = this.opinionServicio.NuevoTrabadorOpinion();
+        this.trabajadorOpinion.opinion = opinion;
+        this.trabajadorOpinion.calificacion = slcCalif.value;
+        let base = await this.opinionServicio.NuevoTrabadorOpinion(this.trabajadorOpinion);
+        if (base.mensajes.length > 0) {
+            base.mensajes.forEach(e => {
+                alert(e);
+            });
+        }else{
+            base.errores.forEach(e => {
+                alert(e);
+            });
+        }
     }
 }
 

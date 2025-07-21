@@ -1,4 +1,5 @@
 import LoginServicio from "../aplicacion/servicios/LoginServicio.js";
+import TokenServicio from "../aplicacion/servicios/TokenServicio.js";
 import TrabajadorContactoServicio from "../aplicacion/servicios/TrabajadorContactoServicio.js";
 import TrabajadorOpinionServicio from "../aplicacion/servicios/TrabajadorOpinionServicio.js";
 import TrabajadorRubroServicio from "../aplicacion/servicios/TrabajadorRubroServicio.js";
@@ -229,12 +230,14 @@ class ModalTrabajador {
         this.mostrarRecurso("opinion");
         let res = this.loginService.verificarLogueo();
         if (res.usuario != null) {
-            this.cargarOpinionVista();
+            this.cargarOpinionVista(res.usuario, this.datos.id);
         }
     }
 
-    cargarOpinionVista(){
-        let opi = new OpinionVista();
+    cargarOpinionVista(token, trabajadorId){
+        let tokenService = new TokenServicio();
+        let userId = tokenService.parseJwt().userId;
+        let opi = new OpinionVista(userId, trabajadorId);
         opi.CargarVista();
     }
 }
