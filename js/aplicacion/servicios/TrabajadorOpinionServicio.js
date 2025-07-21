@@ -36,7 +36,7 @@ class TrabajadorOpinionServicio {
     }
 
     async BuscarOpinionesPorTrabajador(trabajadorId, desde, cantidad){
-        let dir = this.dir + "opiniones/" + trabajadorId + "/" + desde + "/" + cantidad;
+        let dir = this.dir + "/opiniones/" + trabajadorId + "/" + desde + "/" + cantidad;
         let base = await this.peticiones.peticionGet(dir, "GET");
         let json = await base;
         return json;
