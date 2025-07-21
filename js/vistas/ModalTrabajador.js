@@ -1,3 +1,4 @@
+import LoginServicio from "../aplicacion/servicios/LoginServicio.js";
 import TrabajadorContactoServicio from "../aplicacion/servicios/TrabajadorContactoServicio.js";
 import TrabajadorOpinionServicio from "../aplicacion/servicios/TrabajadorOpinionServicio.js";
 import TrabajadorRubroServicio from "../aplicacion/servicios/TrabajadorRubroServicio.js";
@@ -29,6 +30,7 @@ class ModalTrabajador {
     trabajadorRubroServicio = new TrabajadorRubroServicio();
     trabajadorContactoServicio = new TrabajadorContactoServicio();
     trabajadorOpinionServicio = new TrabajadorOpinionServicio();
+    loginService = new LoginServicio();
 
     constructor(datos) {
         this.datos.id = datos.id;
@@ -225,7 +227,10 @@ class ModalTrabajador {
         let btnOpi = document.getElementById(this.ids.btnOpiTrab);
         btnOpi.className = "btnSolapa btnSolapaSel";
         this.mostrarRecurso("opinion");
-        this.cargarOpinionVista();
+        let res = this.loginService.verificarLogueo();
+        if (res.usuario != null) {
+            this.cargarOpinionVista();
+        }
     }
 
     cargarOpinionVista(){
