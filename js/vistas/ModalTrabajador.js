@@ -1,8 +1,8 @@
-import LoginServicio from "../aplicacion/servicios/LoginServicio.js";
 import TokenServicio from "../aplicacion/servicios/TokenServicio.js";
 import TrabajadorContactoServicio from "../aplicacion/servicios/TrabajadorContactoServicio.js";
 import TrabajadorOpinionServicio from "../aplicacion/servicios/TrabajadorOpinionServicio.js";
 import TrabajadorRubroServicio from "../aplicacion/servicios/TrabajadorRubroServicio.js";
+import TrabajadorUsuarioServicio from "../aplicacion/servicios/TrabajadorUsuarioServicio.js";
 import ModalBase from "./ModalBase.js";
 import OpinionVista from "./OpinionVista.js";
 
@@ -31,7 +31,6 @@ class ModalTrabajador {
     trabajadorRubroServicio = new TrabajadorRubroServicio();
     trabajadorContactoServicio = new TrabajadorContactoServicio();
     trabajadorOpinionServicio = new TrabajadorOpinionServicio();
-    loginService = new LoginServicio();
 
     constructor(datos) {
         this.datos.id = datos.id;
@@ -228,17 +227,23 @@ class ModalTrabajador {
         let btnOpi = document.getElementById(this.ids.btnOpiTrab);
         btnOpi.className = "btnSolapa btnSolapaSel";
         this.mostrarRecurso("opinion");
-        let res = this.loginService.verificarLogueo();
-        if (res.usuario != null) {
-            this.cargarOpinionVista(res.usuario, this.datos.id);
-        }
+        this.cargarOpinionVista(this.datos.id);
     }
 
-    cargarOpinionVista(token, trabajadorId){
+    async cargarOpinionVista(trabajadorId){
         let tokenService = new TokenServicio();
-        let userId = tokenService.parseJwt().userId;
-        let opi = new OpinionVista(userId, trabajadorId);
-        opi.CargarVista();
+        let token = tokenService.GetToken();
+        if (token !== null) {
+            let trabajadorUsuarioService = new TrabajadorUsuarioServicio();
+            let userId = tokenService.parseJwt().userId;
+            let resBase = await trabajadorUsuarioService.buscarPorUsuarioId(userId);
+            if (resBase.respuesta.resultados.length > 0) {
+                if (resBase.respuesta.resultados[0].trabajadorId !== trabajadorId) {
+                    let opi = new OpinionVista(userId, trabajadorId);
+                    opi.CargarVista();       
+                }
+            }   
+        }
     }
 }
 
