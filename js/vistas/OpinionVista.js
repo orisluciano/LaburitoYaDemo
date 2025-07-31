@@ -41,7 +41,6 @@ class OpinionVista {
         let txtOpinion = document.getElementById(this.ids.txtOpinion);
         let opinion = txtOpinion.value;
         let slcCalif = document.getElementById(this.ids.slcCalif);
-        alert(opinion + slcCalif.value);
         this.trabajadorOpinion.opinion = opinion;
         this.trabajadorOpinion.calificacion = slcCalif.value;
         let base = await this.opinionServicio.NuevoTrabadorOpinion(this.trabajadorOpinion);
