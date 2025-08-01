@@ -48,6 +48,10 @@ class OpinionVista {
             base.mensajes.forEach(e => {
                 alert(e);
             });
+            let divContenidoTrabajador = document.getElementById("divContenidoTrabajador");
+            divContenidoTrabajador.innerHTML = "";
+            let root = document.getElementById("divOpiniones");
+            root.innerHTML = "";
         }else{
             base.errores.forEach(e => {
                 alert(e);
