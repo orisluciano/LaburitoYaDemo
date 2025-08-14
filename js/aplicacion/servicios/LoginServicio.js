@@ -1,8 +1,9 @@
+import NombreHost from "../utiles/NombreHost.js";
 import TokenServicio from "./TokenServicio.js";
 
 class LoginServicio {
     host = new NombreHost();
-    api = "http://localhost/backendlaburitoya/api/login";
+    api = this.host.nombre + "/backendlaburitoya/api/login";
     tokenService = new TokenServicio();
 
     constructor() {

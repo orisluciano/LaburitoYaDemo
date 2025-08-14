@@ -8,3 +8,5 @@ class NombreHost {
         }
     }
 }
+
+export default NombreHost;
