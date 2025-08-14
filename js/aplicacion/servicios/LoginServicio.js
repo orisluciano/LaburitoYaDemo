@@ -3,7 +3,7 @@ import TokenServicio from "./TokenServicio.js";
 
 class LoginServicio {
     host = new NombreHost();
-    api = this.host.nombre + "/backendlaburitoya/api/login";
+    api = this.host.nombre + "login";
     tokenService = new TokenServicio();
 
     constructor() {
