@@ -4,7 +4,7 @@ class NombreHost {
         if (window.location.hostname === "localhost") {
             this.nombre = "http://localhost";
         }else {
-            this.nombre = "orisluciano.website";
+            this.nombre = "https://app.orisluciano.website";
         }
     }
 }
