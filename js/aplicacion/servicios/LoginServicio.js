@@ -1,7 +1,7 @@
 import TokenServicio from "./TokenServicio.js";
 
 class LoginServicio {
-    dir = "./recursos/datos/usuarios.json";
+    host = new NombreHost();
     api = "http://localhost/backendlaburitoya/api/login";
     tokenService = new TokenServicio();
 

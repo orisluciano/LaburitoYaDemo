@@ -1,4 +1,4 @@
-class Host {
+class NombreHost {
     nombre = "";
     constructor() {
         if (window.location.hostname === "localhost") {
