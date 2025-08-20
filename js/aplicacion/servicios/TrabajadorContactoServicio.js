@@ -41,7 +41,7 @@ class TrabajadorContactoServicio {
     }
 
     async BuscarContactosPorTrabajador(trabajadorId){
-        let dir = this.dir + "/contactos/" + trabajadorId;
+        let dir = this.host.nombre + "/contactos/" + trabajadorId;
         let base = await this.peticiones.peticionGet(dir, "GET");
         let json = await base;
         return json;
