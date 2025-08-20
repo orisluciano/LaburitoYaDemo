@@ -1,7 +1,9 @@
+import NombreHost from "../utiles/NombreHost.js";
 import PeticionesHttp from "../utiles/PeticionesHttp.js";
 
 class RubroServicio {
-    dir = "http://localhost/BackendLaburitoYa/api/rubro/";
+    host = new NombreHost();
+    dir = this.host.nombre + "rubro/";
     peticiones = new PeticionesHttp();
 
     constructor(parameters) {
@@ -28,7 +30,7 @@ class RubroServicio {
     }
 
     async BuscarPorId(id){
-        let dir = "http://localhost/BackendLaburitoYa/api/trabajador/" + id;
+        let dir = this.host.nombre + "trabajador/" + id;
         let base = await this.peticiones.peticionGet(dir, "GET");
         let json = await base;
         return json;
