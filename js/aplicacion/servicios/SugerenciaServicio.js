@@ -1,8 +1,10 @@
+import NombreHost from "../utiles/NombreHost.js";
 import PeticionesHttp from "../utiles/PeticionesHttp.js";
 import TokenServicio from "./TokenServicio.js";
 
 class SugerenciaServicio {
-    dir = "http://localhost/BackendLaburitoYa/api/sugerencia";
+    host = new NombreHost();
+    dir = this.host.nombre + "sugerencia";
     peticiones = new PeticionesHttp();
     tokenService = new TokenServicio();
 
@@ -33,7 +35,7 @@ class SugerenciaServicio {
     }
 
     async BuscarPorId(id){
-        let dir = "http://localhost/BackendLaburitoYa/api/trabajador/" + id;
+        let dir = this.host.nombre + "trabajador/" + id;
         let base = await this.peticiones.peticionGet(dir, "GET");
         let json = await base;
         return json;
