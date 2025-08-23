@@ -1,8 +1,10 @@
+import NombreHost from "../utiles/NombreHost.js";
 import PeticionesHttp from "../utiles/PeticionesHttp.js";
 import TokenServicio from "./TokenServicio.js";
 
 class TrabajadorRubroServicio {
-    dir = "http://localhost/BackendLaburitoYa/api/trabajadorrubro";
+    host = new NombreHost();
+    dir = this.host.nombre + "trabajadorrubro";
     peticiones = new PeticionesHttp();
     tokenServicio = new TokenServicio();
 
