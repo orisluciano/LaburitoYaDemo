@@ -56,7 +56,6 @@ class CrearCuentaVista {
                 if (this.verificarContaseñas(txtPass.value, txtPass2.value)) {
                     let user = {
                         "usuario": txtUser.value,
-                        "tipoUsuarioId": 2,
                         "pass" : txtPass.value,
                         "mail" : txtMail.value + "@" + slcMail.value
                     }
