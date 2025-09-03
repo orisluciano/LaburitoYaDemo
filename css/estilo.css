@@ -433,6 +433,12 @@ a {
     }
   }
 
+  .modalContentLimit {
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
   .dropbtn {
     background-color: #4CAF50;
     color: white;
