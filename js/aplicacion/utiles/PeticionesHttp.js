@@ -14,7 +14,6 @@ class PeticionesHttp {
                 method : metodo
             });
             let json = await res.json();
-            console.log(json);
             this.respuesta = json;
         } catch (error) {
             this.respuesta.errores.push(error);
