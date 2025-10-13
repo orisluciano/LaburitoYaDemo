@@ -1,6 +1,7 @@
 import LoginServicio from "../aplicacion/servicios/LoginServicio.js";
 import BuscadorVista from "./BuscadorVista.js";
 import ConfigUsuarioVista from "./ConfigUsuarioVista.js";
+import FavoritosVista from "./FavoritosVista.js";
 import InicioVista from "./InicioVista.js";
 import PerfilTrabajadorVista from "./PerfilTrabajadorVista.js";
 import SloganVista from "./SloganVista.js";
@@ -76,7 +77,8 @@ class MenuVista {
     }
 
     btnFavOnClick(){
-        alert("Proximamente");
+        let favoritos = new FavoritosVista();
+        favoritos.CargarVista();
     }
 
     btnTrabajadorOnClick(){
