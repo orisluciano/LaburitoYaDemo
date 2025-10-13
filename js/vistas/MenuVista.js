@@ -10,6 +10,7 @@ class MenuVista {
     dir = "./html/menu.html";
     ids = { 
         btnBuscador : "btnBuscador",
+        btnFav : "btnFav",
         btnTrabajador : "btnTrabajador",
         btnOferta : "btnOferta",
         btnConfigUSer : "btnConfigUSer",
@@ -19,6 +20,7 @@ class MenuVista {
         contenidoMenu : "contenidoMenu",
         divMenu : "divMenu"
     };
+
     constructor(parameters) {
         
     }
@@ -41,6 +43,10 @@ class MenuVista {
         let btnBuscador = document.getElementById(this.ids.btnBuscador);
         btnBuscador.onclick = function() {
             esto.btnBuscadorOnClick();
+        }
+        let btnFav = document.getElementById(this.ids.btnFav);
+        btnFav.onclick = function() {
+            esto.btnFavOnClick();
         }
         let btnTrabajador = document.getElementById(this.ids.btnTrabajador);
         btnTrabajador.onclick = function() {
@@ -67,6 +73,10 @@ class MenuVista {
     btnBuscadorOnClick(){
         let buscador = new BuscadorVista();
         buscador.CargarVista();
+    }
+
+    btnFavOnClick(){
+        alert("Proximamente");
     }
 
     btnTrabajadorOnClick(){
