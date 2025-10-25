@@ -1,11 +1,13 @@
 import NombreHost from "../utiles/NombreHost.js";
 import PeticionesHttp from "../utiles/PeticionesHttp.js";
+import TokenServicio from "./TokenServicio.js";
 
 
 class FavoritoServicio {
     host = new NombreHost();
     dir = this.host.nombre + "favoritos/";
     peticiones = new PeticionesHttp();
+    tokenService = new TokenServicio();
 
     constructor(parameters) {
         
@@ -31,8 +33,11 @@ class FavoritoServicio {
         alert("no implementado");
     }
 
-    buscarPorUsuario(id){
-        alert("no implementado");
+    async buscarPorUsuario(id){
+        let dir = this.dir + "usuario/" + id;
+        let base = await this.peticiones.getWithToken(this.dir, this.tokenService.BearerToken());
+        let json = await base;
+        return json;
     }
 }
 
