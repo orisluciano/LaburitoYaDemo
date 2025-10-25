@@ -1,4 +1,6 @@
+import FavoritoServicio from "../aplicacion/servicios/FavoritoServicio.js";
 import RubroServicio from "../aplicacion/servicios/RubroServicio.js";
+import TokenServicio from "../aplicacion/servicios/TokenServicio.js";
 import TrabajadorServicio from "../aplicacion/servicios/TrabajadorServicio.js";
 import ModalTrabajador from "./ModalTrabajador.js";
 
@@ -10,6 +12,8 @@ class FavoritosVista {
         slcRubroBuscador : "slcRubroBuscador",
         divPaginacion : "divPaginacion"
     };
+    favoritoService = new FavoritoServicio();
+    tokenService = new TokenServicio();
     trabajadorService = new TrabajadorServicio();
     rubroService = new RubroServicio();
 
@@ -23,8 +27,8 @@ class FavoritosVista {
         let root = document.getElementById("root");
         root.innerHTML = "";
         root.innerHTML = await vista;
-        this.cargarFunciones();
-        this.cargarRubros();
+        //this.cargarFunciones();
+        this.cargarFavoritos();
     }
 
     cargarFunciones(){
@@ -33,6 +37,11 @@ class FavoritosVista {
         btnBuscar.onclick = function() {
             esto.buscar(0,0);            
         }
+    }
+
+    async cargarFavoritos(){
+        let userId = this.tokenService.parseJwt().userId;
+        let favs = await this.favoritoService.buscarPorUsuario(userId);
     }
 
     async cargarRubros(){
