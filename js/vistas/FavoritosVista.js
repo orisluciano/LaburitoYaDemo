@@ -42,6 +42,7 @@ class FavoritosVista {
     async cargarFavoritos(){
         let userId = this.tokenService.parseJwt().userId;
         let favs = await this.favoritoService.buscarPorUsuario(userId);
+        this.cargarTabla(favs);
     }
 
     async cargarRubros(){
@@ -72,23 +73,23 @@ class FavoritosVista {
         }
     }
 
-    async cargarTabla(rubro, desde, cantidad, index){
+    async cargarTabla(datos){
         let esto = this;
-        let datos = await this.cargarDatos(rubro, desde, cantidad);
+        //let datos = await this.cargarDatos(rubro, desde, cantidad);
         if (datos.errores.length > 0) {
             alert("Hubo un error. Intente de nuevo");
         } else {
-            let cantTrab = datos.respuesta.cantidad;
-            if (datos.respuesta.cantidad > 0) {
-                let trabajadores = datos.respuesta.resultados;
+            //let cantTrab = datos.respuesta.cantidad;
+            if (datos.respuesta.resultados.length > 0) {
+                let favs = datos.respuesta.resultados;
                 let tabla = document.getElementById(this.ids.tBody);
                 tabla.innerHTML = "";
-                trabajadores.forEach(e => {
+                favs.forEach(e => {
                     esto.crearFila(e, tabla);
                 });
-                this.cargarPaginacion(cantTrab, cantidad, index);    
+                //this.cargarPaginacion(cantTrab, cantidad, index);    
             } else {
-                alert("No se encontraron trabajadores");
+                alert("Todavia no hay favoritos");
             }
         }
     }
@@ -101,18 +102,10 @@ class FavoritosVista {
             esto.abrilModal(datos);
         }
         padre.appendChild(row);
-        let nombre = document.createElement("td");
-        nombre.className = "width50";
-        nombre.innerHTML = datos.nombre + " " + datos.apellido;
-        row.appendChild(nombre);
-        let especialidades = document.createElement("td");
-        especialidades.className = "width50";
-        /*let esps = "";
-        datos.rubros.forEach(e => {
-            esps = esps + e;
-        });
-        especialidades.innerHTML = esps;
-        row.appendChild(especialidades);*/
+        let etiqueta = document.createElement("td");
+        etiqueta.className = "width50";
+        etiqueta.innerHTML = datos.etiqueta;
+        row.appendChild(etiqueta);
     }
 
     abrilModal(datos){
