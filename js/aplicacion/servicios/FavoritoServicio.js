@@ -35,7 +35,7 @@ class FavoritoServicio {
 
     async buscarPorUsuario(id){
         let dir = this.dir + "usuario/" + id;
-        let base = await this.peticiones.getWithToken(this.dir, this.tokenService.BearerToken());
+        let base = await this.peticiones.getWithToken(dir, this.tokenService.BearerToken());
         let json = await base;
         return json;
     }
