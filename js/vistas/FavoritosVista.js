@@ -2,6 +2,7 @@ import FavoritoServicio from "../aplicacion/servicios/FavoritoServicio.js";
 import RubroServicio from "../aplicacion/servicios/RubroServicio.js";
 import TokenServicio from "../aplicacion/servicios/TokenServicio.js";
 import TrabajadorServicio from "../aplicacion/servicios/TrabajadorServicio.js";
+import ModalFavorito from "./ModalFavorito.js";
 import ModalTrabajador from "./ModalTrabajador.js";
 
 class FavoritosVista {
@@ -109,8 +110,7 @@ class FavoritosVista {
     }
 
     abrilModal(datos){
-        console.log(datos);
-        let modal = new ModalTrabajador(datos)
+        let modal = new ModalFavorito(datos);
         modal.cargarVista();
     }
 
