@@ -1,4 +1,5 @@
 import FavoritoServicio from "../aplicacion/servicios/FavoritoServicio.js";
+import TrabajadorContactoServicio from "../aplicacion/servicios/TrabajadorContactoServicio.js";
 import ModalBase from "./ModalBase.js";
 
 class ModalFavorito {
@@ -12,7 +13,8 @@ class ModalFavorito {
         btnRubroTrab : "btnRubroTrab",
         btnContTrab : "btnContTrab",
         btnOpiTrab : "btnOpiTrab",
-        divModalTrab : "divModalTrab"
+        divModalTrab : "divModalTrab",
+        divContactosFavs : "divContactosFavs"
     }
     favorito = {
         descripcion : null,
@@ -25,6 +27,7 @@ class ModalFavorito {
     }
     base = new ModalBase();
     favServicio = new FavoritoServicio();
+    contactoServicio = new TrabajadorContactoServicio();
 
     constructor(datos) {
         this.favorito.id = datos.id;
@@ -41,7 +44,7 @@ class ModalFavorito {
         let vista = await res.text();
         await this.base.abrirModal(vista);
         this.mostrarDatos();
-        this.cargarFunciones();
+        //this.cargarFunciones();
     }
 
     cargarFunciones(){
@@ -62,14 +65,51 @@ class ModalFavorito {
 
     async mostrarDatos(){
         let nombre = document.getElementById(this.ids.nombreTrabajador);
-        nombre.innerHTML = "";
-        nombre.innerHTML = this.datos.nombre + " " + this.datos.apellido;
+        nombre = "";
+        nombre = this.favorito.etiqueta;
         let descripcion = document.getElementById(this.ids.descripTrabajador);
         descripcion.innerHTML = "";
-        descripcion.innerHTML = this.datos.descripcion;
+        descripcion.innerHTML = this.favorito.descripcion;
+        this.mostrarContactos();
         /*await this.getRubrosByTrabajador();
         await this.getContactosByTrabajador();
         await this.getOpinionesByTrabajador();*/
+    }
+
+    async mostrarContactos() {
+        let contactos = await this.contactoServicio.BuscarContactosPorTrabajador(this.favorito.trabajadorId);
+        let contenido = document.getElementById(this.ids.divContactosFavs);
+        contenido.innerHTML = "";
+        if (contactos.errores.length === 0) {
+            let ul = document.createElement("ul");
+            contenido.appendChild(ul);
+            contactos.respuesta.resultados.forEach(e => {
+                let li = document.createElement("li");
+                li.className = "displayFlex centrarContenido width100";
+                let link = document.createElement("a");
+                link.className = "aLink cursorPointer";
+                if (e.tipoContacto === "Telefono/Celular" || e.tipoContacto === "Email") {
+                        link.innerHTML = e.tipoContacto + ": " + e.descripcion;
+                        link.onclick = function(p) {
+                            navigator.clipboard.writeText(e.descripcion);
+                            alert(e.tipoContacto + " copiado");
+                        }
+                   } else {
+                        link.innerHTML = e.tipoContacto;
+                        link.href = e.descripcion;
+                   }
+                    link.style.cursor = "pointer";
+                    link.target = "_blank";
+                    li.appendChild(link);
+                ul.appendChild(li);
+            });
+        } else {
+            let mensaje = "";
+            contactos.errores.forEach(e => {
+                mensaje = e + ". ";
+            });
+            contenido.innerHTML = mensaje;
+        }     
     }
 }
 
