@@ -16,7 +16,10 @@ class ModalTrabajador {
         divContenidoTrabajador : "divContenidoTrabajador",
         btnRubroTrab : "btnRubroTrab",
         btnContTrab : "btnContTrab",
-        btnOpiTrab : "btnOpiTrab"
+        btnOpiTrab : "btnOpiTrab",
+        divFav : "divFav",
+        btnAgregarFavs : "btnAgregarFavs",
+        btnElimFavs : "btnElimFavs"
     }
     base = new ModalBase();
     datos = {
