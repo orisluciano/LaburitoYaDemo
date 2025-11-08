@@ -3,6 +3,7 @@ import TrabajadorContactoServicio from "../aplicacion/servicios/TrabajadorContac
 import TrabajadorOpinionServicio from "../aplicacion/servicios/TrabajadorOpinionServicio.js";
 import TrabajadorRubroServicio from "../aplicacion/servicios/TrabajadorRubroServicio.js";
 import TrabajadorUsuarioServicio from "../aplicacion/servicios/TrabajadorUsuarioServicio.js";
+import LoginServicio from "../aplicacion/servicios/LoginServicio.js";
 import ModalBase from "./ModalBase.js";
 import OpinionVista from "./OpinionVista.js";
 
@@ -34,6 +35,7 @@ class ModalTrabajador {
     trabajadorRubroServicio = new TrabajadorRubroServicio();
     trabajadorContactoServicio = new TrabajadorContactoServicio();
     trabajadorOpinionServicio = new TrabajadorOpinionServicio();
+    loginServicio = new LoginServicio();
 
     constructor(datos) {
         this.datos.id = datos.id;
@@ -46,6 +48,7 @@ class ModalTrabajador {
         let res = await fetch(this.dir);
         let vista = await res.text();
         await this.base.abrirModal(vista);
+        this.checkFav();
         this.mostrarDatos();
         this.cargarFunciones();
     }
@@ -246,6 +249,17 @@ class ModalTrabajador {
                     opi.CargarVista();       
                 }
             }   
+        }
+    }
+
+    checkFav(){
+        let res = this.loginServicio.verificarLogueo();
+        if (res.usuario === null) {
+            let div = document.getElementById(this.ids.divFav);
+            div.style.display = "none";
+        } else {
+            //if favorito = true
+            //if favorito = false
         }
     }
 }
