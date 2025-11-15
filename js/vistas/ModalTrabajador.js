@@ -258,9 +258,18 @@ class ModalTrabajador {
             let div = document.getElementById(this.ids.divFav);
             div.style.display = "none";
         } else {
-            //if favorito = true
-            //if favorito = false
+            let crear = document.getElementById(this.ids.btnAgregarFavs);
+            let elim = document.getElementById(this.ids.btnElimFavs);
+            if (this.checkFavorito()) {
+                crear.style.display = "none";
+            } else {
+                elim.style.display = "none";
+            }
         }
+    }
+
+    checkFavorito(){
+        return true;
     }
 }
 
