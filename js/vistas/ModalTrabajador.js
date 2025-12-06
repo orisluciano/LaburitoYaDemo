@@ -1,4 +1,5 @@
 import TokenServicio from "../aplicacion/servicios/TokenServicio.js";
+import FavoritoServicio from "../aplicacion/servicios/FavoritoServicio.js";
 import TrabajadorContactoServicio from "../aplicacion/servicios/TrabajadorContactoServicio.js";
 import TrabajadorOpinionServicio from "../aplicacion/servicios/TrabajadorOpinionServicio.js";
 import TrabajadorRubroServicio from "../aplicacion/servicios/TrabajadorRubroServicio.js";
@@ -260,7 +261,7 @@ class ModalTrabajador {
         } else {
             let crear = document.getElementById(this.ids.btnAgregarFavs);
             let elim = document.getElementById(this.ids.btnElimFavs);
-            if (this.checkFavorito()) {
+            if (this.checkFavorito(this)) {//corregir
                 crear.style.display = "none";
             } else {
                 elim.style.display = "none";
@@ -268,8 +269,16 @@ class ModalTrabajador {
         }
     }
 
-    checkFavorito(){
-        return true;
+    async checkFavorito(userId){
+        let favServ = new FavoritoServicio();
+        let favRes = await favServ.buscarPorUsuarioId(userId);
+        let encontrado = false;
+        favRes.respuesta.resultados.length.forEach(e => {
+            if (e.id === datos.id && encontrado === false) {
+                encontrado = true;
+            }
+        }); 
+        return encontrado;
     }
 }
 
