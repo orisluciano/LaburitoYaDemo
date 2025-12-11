@@ -69,6 +69,14 @@ class ModalTrabajador {
         btnOpiTrab.onclick = function(params) {
             e.btnOpiTrabOnClick();
         };
+        let btnAgregarFavs = document.getElementById(this.ids.btnAgregarFavs);
+        btnAgregarFavs.onclick = function(params) {
+            e.btnAgregarFavsOnClick();
+        };
+        let btnElimFavs = document.getElementById(this.ids.btnElimFavs);
+        btnElimFavs.onclick = function(params) {
+            e.btnElimFavsOnClick();
+        }
     }
 
     async mostrarDatos(){
@@ -236,6 +244,14 @@ class ModalTrabajador {
         btnOpi.className = "btnSolapa btnSolapaSel";
         this.mostrarRecurso("opinion");
         this.cargarOpinionVista(this.datos.id);
+    }
+
+    async btnAgregarFavsOnClick(){
+        alert();
+    }
+
+    async btnElimFavsOnClick(){
+        alert();
     }
 
     async cargarOpinionVista(trabajadorId){
