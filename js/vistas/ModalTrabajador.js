@@ -37,6 +37,7 @@ class ModalTrabajador {
     trabajadorContactoServicio = new TrabajadorContactoServicio();
     trabajadorOpinionServicio = new TrabajadorOpinionServicio();
     loginServicio = new LoginServicio();
+    tokenServicio = new TokenServicio();
 
     constructor(datos) {
         this.datos.id = datos.id;
@@ -49,7 +50,7 @@ class ModalTrabajador {
         let res = await fetch(this.dir);
         let vista = await res.text();
         await this.base.abrirModal(vista);
-        this.checkFav();
+        await this.checkFav();
         this.mostrarDatos();
         this.cargarFunciones();
     }
@@ -238,8 +239,7 @@ class ModalTrabajador {
     }
 
     async cargarOpinionVista(trabajadorId){
-        let tokenService = new TokenServicio();
-        let token = tokenService.GetToken();
+        let token = this.tokenServicio.GetToken();
         if (token !== null) {
             let trabajadorUsuarioService = new TrabajadorUsuarioServicio();
             let userId = tokenService.parseJwt().userId;
@@ -253,7 +253,7 @@ class ModalTrabajador {
         }
     }
 
-    checkFav(){
+    async checkFav(){
         let res = this.loginServicio.verificarLogueo();
         if (res.usuario === null) {
             let div = document.getElementById(this.ids.divFav);
@@ -261,7 +261,9 @@ class ModalTrabajador {
         } else {
             let crear = document.getElementById(this.ids.btnAgregarFavs);
             let elim = document.getElementById(this.ids.btnElimFavs);
-            if (this.checkFavorito(this)) {//corregir
+            let token = this.tokenServicio.parseJwt();
+            let checkFav = await this.checkFavorito(token.userId);
+            if (checkFav) {
                 crear.style.display = "none";
             } else {
                 elim.style.display = "none";
@@ -271,10 +273,10 @@ class ModalTrabajador {
 
     async checkFavorito(userId){
         let favServ = new FavoritoServicio();
-        let favRes = await favServ.buscarPorUsuarioId(userId);
+        let favRes = await favServ.buscarPorUsuario(userId);
         let encontrado = false;
-        favRes.respuesta.resultados.length.forEach(e => {
-            if (e.id === datos.id && encontrado === false) {
+        favRes.respuesta.resultados.forEach(e => {
+            if (e.id === this.datos.id && encontrado === false) {
                 encontrado = true;
             }
         }); 
