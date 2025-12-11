@@ -36,6 +36,7 @@ class ModalTrabajador {
     trabajadorRubroServicio = new TrabajadorRubroServicio();
     trabajadorContactoServicio = new TrabajadorContactoServicio();
     trabajadorOpinionServicio = new TrabajadorOpinionServicio();
+    favoritoServicio = new FavoritoServicio();
     loginServicio = new LoginServicio();
     tokenServicio = new TokenServicio();
 
@@ -247,7 +248,7 @@ class ModalTrabajador {
     }
 
     async btnAgregarFavsOnClick(){
-        alert();
+        await this.agregarFavorito();
     }
 
     async btnElimFavsOnClick(){
@@ -288,8 +289,7 @@ class ModalTrabajador {
     }
 
     async checkFavorito(userId){
-        let favServ = new FavoritoServicio();
-        let favRes = await favServ.buscarPorUsuario(userId);
+        let favRes = await this.favoritoServicio.buscarPorUsuario(userId);
         let encontrado = false;
         favRes.respuesta.resultados.forEach(e => {
             if (e.id === this.datos.id && encontrado === false) {
@@ -297,6 +297,17 @@ class ModalTrabajador {
             }
         }); 
         return encontrado;
+    }
+
+    async agregarFavorito() {
+        let favorito = {
+            etiqueta : "",
+            descripcion : "",
+            trabajadorId : "",
+            usuarioId : ""
+        };
+        let favRes = await this.favoritoServicio.nuevo(favorito);
+        console.log(favRes);
     }
 }
 

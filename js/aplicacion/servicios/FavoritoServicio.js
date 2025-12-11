@@ -13,11 +13,11 @@ class FavoritoServicio {
         
     }
 
-    nuevo(fvorito){
+    nuevo(favorito){
         alert("no implementado");
     }
 
-    modificar(fvorito){
+    modificar(favorito){
         alert("no implementado");
     }
 
