@@ -5,7 +5,7 @@ import TokenServicio from "./TokenServicio.js";
 
 class FavoritoServicio {
     host = new NombreHost();
-    dir = this.host.nombre + "favoritos/";
+    dir = this.host.nombre + "favoritos";
     peticiones = new PeticionesHttp();
     tokenService = new TokenServicio();
 
@@ -13,8 +13,10 @@ class FavoritoServicio {
         
     }
 
-    nuevo(favorito){
-        alert("no implementado");
+    async nuevo(favorito){
+        let base = await this.peticiones.post(this.dir, favorito, this.tokenService.BearerToken());
+        let json = await base;
+        return json;
     }
 
     modificar(favorito){
@@ -34,7 +36,7 @@ class FavoritoServicio {
     }
 
     async buscarPorUsuario(id){
-        let dir = this.dir + "usuario/" + id;
+        let dir = this.dir + "/usuario/" + id;
         let base = await this.peticiones.getWithToken(dir, this.tokenService.BearerToken());
         let json = await base;
         return json;
